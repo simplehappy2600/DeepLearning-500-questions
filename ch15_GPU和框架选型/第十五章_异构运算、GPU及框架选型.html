@@ -1,0 +1,725 @@
+<!DOCTYPE html><html><head>
+      <title>&#x7B2C;&#x5341;&#x4E94;&#x7AE0;_&#x5F02;&#x6784;&#x8FD0;&#x7B97;&#x3001;GPU&#x53CA;&#x6846;&#x67B6;&#x9009;&#x578B;</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+      <style> 
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+ 
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview   ">
+      <ul>
+<li><a href="#%E7%AC%AC%E5%8D%81%E4%BA%94%E7%AB%A0-%E5%BC%82%E6%9E%84%E8%AE%A1%E7%AE%97-gpu%E5%92%8C%E6%A1%86%E6%9E%B6%E9%80%89%E5%9E%8B%E6%8C%87%E5%8D%97">&#x7B2C;&#x5341;&#x4E94;&#x7AE0; &#x5F02;&#x6784;&#x8BA1;&#x7B97;&#xFF0C; GPU&#x548C;&#x6846;&#x67B6;&#x9009;&#x578B;&#x6307;&#x5357;</a>
+<ul>
+<li><a href="#151-%E4%BB%80%E4%B9%88%E6%98%AF%E5%BC%82%E6%9E%84%E8%AE%A1%E7%AE%97">15.1 &#x4EC0;&#x4E48;&#x662F;&#x5F02;&#x6784;&#x8BA1;&#x7B97;&#xFF1F;</a></li>
+<li><a href="#152-%E4%BB%80%E4%B9%88%E6%98%AFgpgpu">15.2 &#x4EC0;&#x4E48;&#x662F;GPGPU&#xFF1F;</a></li>
+<li><a href="#153-gpu%E6%9E%B6%E6%9E%84%E7%AE%80%E4%BB%8B">15.3 GPU&#x67B6;&#x6784;&#x7B80;&#x4ECB;</a>
+<ul>
+<li><a href="#1531-%E5%A6%82%E4%BD%95%E9%80%9A%E4%BF%97%E7%90%86%E8%A7%A3gpu%E7%9A%84%E6%9E%B6%E6%9E%84">15.3.1 &#x5982;&#x4F55;&#x901A;&#x4FD7;&#x7406;&#x89E3;GPU&#x7684;&#x67B6;&#x6784;&#xFF1F;</a></li>
+<li><a href="#1532-cuda-%E6%A0%B8%E5%BF%83%E6%98%AF%E4%BB%80%E4%B9%88">15.3.2 CUDA &#x6838;&#x5FC3;&#x662F;&#x4EC0;&#x4E48;&#xFF1F;</a></li>
+<li><a href="#1533-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8gpu">15.3.3 &#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x4F7F;&#x7528;GPU&#xFF1F;</a></li>
+<li><a href="#1534-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84gpu%E5%BA%94%E7%94%A8">15.3.4 &#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x4E2D;&#x7684;GPU&#x5E94;&#x7528;</a></li>
+<li><a href="#1535-%E6%96%B0%E5%9B%BE%E7%81%B5%E6%9E%B6%E6%9E%84%E9%87%8C%E7%9A%84tensor-core%E5%AF%B9%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%9C%89%E4%BB%80%E4%B9%88%E4%BD%9C%E7%94%A8">15.3.5 &#x65B0;&#x56FE;&#x7075;&#x67B6;&#x6784;&#x91CC;&#x7684;tensor core&#x5BF9;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x6709;&#x4EC0;&#x4E48;&#x4F5C;&#x7528;&#xFF1F;</a></li>
+</ul>
+</li>
+<li><a href="#154-cuda-%E6%A1%86%E6%9E%B6">15.4 CUDA &#x6846;&#x67B6;</a>
+<ul>
+<li><a href="#1541-%E5%81%9Acuda%E7%BC%96%E7%A8%8B%E9%9A%BE%E4%B8%8D%E9%9A%BE">15.4.1 &#x505A;CUDA&#x7F16;&#x7A0B;&#x96BE;&#x4E0D;&#x96BE;&#xFF1F;</a></li>
+<li><a href="#1542-cudnn">15.4.2 cuDNN</a></li>
+</ul>
+</li>
+<li><a href="#155-gpu%E7%A1%AC%E4%BB%B6%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%8E%A8%E8%8D%90">15.5 GPU&#x786C;&#x4EF6;&#x73AF;&#x5883;&#x914D;&#x7F6E;&#x63A8;&#x8350;</a>
+<ul>
+<li><a href="#1551-gpu%E4%B8%BB%E8%A6%81%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87">15.5.1 GPU&#x4E3B;&#x8981;&#x6027;&#x80FD;&#x6307;&#x6807;</a></li>
+<li><a href="#1552-%E8%B4%AD%E4%B9%B0%E5%BB%BA%E8%AE%AE">15.5.2 &#x8D2D;&#x4E70;&#x5EFA;&#x8BAE;</a><br>
+* <a href="#%E9%A6%96%E5%85%88%E7%BB%99%E5%87%BA%E4%B8%80%E4%BA%9B%E6%80%BB%E4%BD%93%E7%9A%84%E5%BB%BA%E8%AE%AE">&#x9996;&#x5148;&#x7ED9;&#x51FA;&#x4E00;&#x4E9B;&#x603B;&#x4F53;&#x7684;&#x5EFA;&#x8BAE;</a></li>
+</ul>
+</li>
+<li><a href="#156-%E8%BD%AF%E4%BB%B6%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA">15.6 &#x8F6F;&#x4EF6;&#x73AF;&#x5883;&#x642D;&#x5EFA;</a>
+<ul>
+<li><a href="#1561-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%80%89%E6%8B%A9">15.6.1 &#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x9009;&#x62E9;&#xFF1F;</a></li>
+<li><a href="#1562-%E5%B8%B8%E7%94%A8%E5%9F%BA%E7%A1%80%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85">15.6.2 &#x5E38;&#x7528;&#x57FA;&#x7840;&#x8F6F;&#x4EF6;&#x5B89;&#x88C5;&#xFF1F;</a></li>
+<li><a href="#1563-%E6%9C%AC%E6%9C%BA%E5%AE%89%E8%A3%85%E8%BF%98%E6%98%AF%E4%BD%BF%E7%94%A8docker">15.6.3 &#x672C;&#x673A;&#x5B89;&#x88C5;&#x8FD8;&#x662F;&#x4F7F;&#x7528;docker&#xFF1F;</a></li>
+<li><a href="#1564-gpu%E9%A9%B1%E5%8A%A8%E9%97%AE%E9%A2%98">15.6.4 GPU&#x9A71;&#x52A8;&#x95EE;&#x9898;</a></li>
+</ul>
+</li>
+<li><a href="#157-%E6%A1%86%E6%9E%B6%E9%80%89%E6%8B%A9">15.7 &#x6846;&#x67B6;&#x9009;&#x62E9;</a>
+<ul>
+<li><a href="#1571-%E4%B8%BB%E6%B5%81%E6%A1%86%E6%9E%B6%E6%AF%94%E8%BE%83">15.7.1 &#x4E3B;&#x6D41;&#x6846;&#x67B6;&#x6BD4;&#x8F83;</a></li>
+<li><a href="#1572-%E6%A1%86%E6%9E%B6%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF">15.7.2 &#x6846;&#x67B6;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;</a></li>
+<li><a href="#1573-%E5%93%AA%E4%BA%9B%E6%A1%86%E6%9E%B6%E5%AF%B9%E4%BA%8E%E9%83%A8%E7%BD%B2%E7%8E%AF%E5%A2%83%E5%8F%8B%E5%A5%BD">15.7.3 &#x54EA;&#x4E9B;&#x6846;&#x67B6;&#x5BF9;&#x4E8E;&#x90E8;&#x7F72;&#x73AF;&#x5883;&#x53CB;&#x597D;&#xFF1F;</a></li>
+<li><a href="#1574-%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9A%84%E6%A1%86%E6%9E%B6%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9">15.7.4 &#x79FB;&#x52A8;&#x5E73;&#x53F0;&#x7684;&#x6846;&#x67B6;&#x5982;&#x4F55;&#x9009;&#x62E9;&#xFF1F;</a></li>
+</ul>
+</li>
+<li><a href="#158-%E5%85%B6%E4%BB%96">15.8 &#x5176;&#x4ED6;</a>
+<ul>
+<li><a href="#1581-%E5%A4%9Agpu%E7%8E%AF%E5%A2%83%E7%9A%84%E9%85%8D%E7%BD%AE">15.8.1 &#x591A;GPU&#x73AF;&#x5883;&#x7684;&#x914D;&#x7F6E;</a></li>
+<li><a href="#1582-%E6%98%AF%E4%B8%8D%E6%98%AF%E5%8F%AF%E4%BB%A5%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83">15.8.2 &#x662F;&#x4E0D;&#x662F;&#x53EF;&#x4EE5;&#x5206;&#x5E03;&#x5F0F;&#x8BAD;&#x7EC3;&#xFF1F;</a></li>
+<li><a href="#1583-%E5%8F%AF%E4%BB%A5%E5%9C%A8spark%E7%8E%AF%E5%A2%83%E9%87%8C%E8%AE%AD%E7%BB%83%E6%88%96%E8%80%85%E9%83%A8%E7%BD%B2%E6%A8%A1%E5%9E%8B%E5%90%97">15.8.3 &#x53EF;&#x4EE5;&#x5728;SPARK&#x73AF;&#x5883;&#x91CC;&#x8BAD;&#x7EC3;&#x6216;&#x8005;&#x90E8;&#x7F72;&#x6A21;&#x578B;&#x5417;&#xFF1F;</a></li>
+<li><a href="#1584-%E6%80%8E%E4%B9%88%E8%BF%9B%E4%B8%80%E6%AD%A5%E4%BC%98%E5%8C%96%E6%80%A7%E8%83%BD">15.8.4 &#x600E;&#x4E48;&#x8FDB;&#x4E00;&#x6B65;&#x4F18;&#x5316;&#x6027;&#x80FD;&#xFF1F;</a></li>
+<li><a href="#1585-tpu%E5%92%8Cgpu%E7%9A%84%E5%8C%BA%E5%88%AB">15.8.5 TPU&#x548C;GPU&#x7684;&#x533A;&#x522B;&#xFF1F;</a></li>
+<li><a href="#1586-%E6%9C%AA%E6%9D%A5%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%AF%B9%E4%BA%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AD%89ai%E6%8A%80%E6%9C%AF%E7%9A%84%E5%BD%B1%E5%93%8D">15.8.6 &#x672A;&#x6765;&#x91CF;&#x5B50;&#x8BA1;&#x7B97;&#x5BF9;&#x4E8E;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x7B49;AI&#x6280;&#x672F;&#x7684;&#x5F71;&#x54CD;&#xFF1F;</a></li>
+</ul>
+</li>
+<li><a href="#151-gpu%E8%B4%AD%E4%B9%B0%E6%8C%87%E5%8D%97">15.1 GPU&#x8D2D;&#x4E70;&#x6307;&#x5357;</a>
+<ul>
+<li><a href="#1511-%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9gpu">15.1.1 &#x5982;&#x4F55;&#x9009;&#x62E9;GPU</a></li>
+<li><a href="#1512-gpu%E7%9A%84%E4%B8%BB%E8%A6%81%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87">15.1.2 GPU&#x7684;&#x4E3B;&#x8981;&#x6027;&#x80FD;&#x6307;&#x6807;</a></li>
+<li><a href="#1513-%E6%95%B4%E6%9C%BA%E9%85%8D%E7%BD%AE">15.1.3 &#x6574;&#x673A;&#x914D;&#x7F6E;</a></li>
+<li><a href="#1514-%E5%B0%8F%E7%BB%93">15.1.4 &#x5C0F;&#x7ED3;</a></li>
+</ul>
+</li>
+<li><a href="#152-%E6%A1%86%E6%9E%B6%E9%80%89%E5%9E%8B">15.2 &#x6846;&#x67B6;&#x9009;&#x578B;</a>
+<ul>
+<li><a href="#1521-%E5%B8%B8%E7%94%A8%E6%A1%86%E6%9E%B6%E7%AE%80%E4%BB%8B">15.2.1 &#x5E38;&#x7528;&#x6846;&#x67B6;&#x7B80;&#x4ECB;</a></li>
+<li><a href="#1521-%E6%A1%86%E6%9E%B6%E9%80%89%E5%9E%8B%E6%80%BB%E7%BB%93">15.2.1 &#x6846;&#x67B6;&#x9009;&#x578B;&#x603B;&#x7ED3;</a></li>
+</ul>
+</li>
+<li><a href="#153-%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2">15.3 &#x6A21;&#x578B;&#x90E8;&#x7F72;</a></li>
+</ul>
+</li>
+</ul>
+<h1 class="mume-header" id="%E7%AC%AC%E5%8D%81%E4%BA%94%E7%AB%A0-%E5%BC%82%E6%9E%84%E8%AE%A1%E7%AE%97-gpu%E5%92%8C%E6%A1%86%E6%9E%B6%E9%80%89%E5%9E%8B%E6%8C%87%E5%8D%97">&#x7B2C;&#x5341;&#x4E94;&#x7AE0; &#x5F02;&#x6784;&#x8BA1;&#x7B97;&#xFF0C; GPU&#x548C;&#x6846;&#x67B6;&#x9009;&#x578B;&#x6307;&#x5357;</h1>
+
+<p>&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x8BAD;&#x7EC3;&#x548C;&#x63A8;&#x7406;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x4F1A;&#x6D89;&#x53CA;&#x5230;&#x5927;&#x91CF;&#x7684;&#x5411;&#x91CF;(vector)&#xFF0C;&#x77E9;&#x9635;(matrix)&#x548C;&#x5F20;&#x91CF;(tensor)&#x64CD;&#x4F5C;&#xFF0C;&#x901A;&#x5E38;&#x9700;&#x8981;&#x5927;&#x91CF;&#x7684;&#x6D6E;&#x70B9;&#x8BA1;&#x7B97;&#xFF0C;&#x5305;&#x62EC;&#x9AD8;&#x7CBE;&#x5EA6;&#xFF08;&#x5728;&#x8BAD;&#x7EC3;&#x7684;&#x65F6;&#x5019;&#xFF09;&#x548C;&#x4F4E;&#x7CBE;&#x5EA6;&#xFF08;&#x5728;&#x63A8;&#x7406;&#x548C;&#x90E8;&#x7F72;&#x7684;&#x65F6;&#x5019;&#xFF09;&#x3002;GPU&#xFF0C; &#x4F5C;&#x4E3A;&#x4E00;&#x79CD;&#x901A;&#x7528;&#x53EF;&#x7F16;&#x7A0B;&#x7684;&#x52A0;&#x901F;&#x5668;&#xFF0C;&#x6700;&#x521D;&#x8BBE;&#x8BA1;&#x662F;&#x7528;&#x6765;&#x8FDB;&#x884C;&#x56FE;&#x5F62;&#x5904;&#x7406;&#x548C;&#x6E32;&#x67D3;&#x529F;&#x80FD;&#xFF0C;&#x4F46;&#x662F;&#x4ECE;2007&#x5E74;&#x5F00;&#x59CB;&#xFF0C;&#x82F1;&#x4F1F;&#x8FBE;(NVIDIA)&#x516C;&#x53F8;&#x63D0;&#x51FA;&#x4E86;&#x7B2C;&#x4E00;&#x4E2A;&#x53EF;&#x7F16;&#x7A0B;&#x901A;&#x7528;&#x8BA1;&#x7B97;&#x5E73;&#x53F0;&#xFF08;GPGPU&#xFF09;&#xFF0C;&#x540C;&#x65F6;&#x63D0;&#x51FA;&#x4E86;CUDA&#x6846;&#x67B6;&#xFF0C;&#x4ECE;&#x6B64;&#x5F00;&#x542F;&#x4E86;GPU&#x7528;&#x4E8E;&#x901A;&#x7528;&#x8BA1;&#x7B97;&#x7684;&#x65B0;&#x7EAA;&#x5143;&#x3002;&#x6B64;&#x540E;&#xFF0C;&#x4E0D;&#x8BA1;&#x5176;&#x6570;&#x7684;&#x79D1;&#x7814;&#x4EBA;&#x5458;&#x548C;&#x5F00;&#x53D1;&#x8005;&#xFF0C;&#x5BF9;&#x5404;&#x79CD;&#x4E0D;&#x540C;&#x7C7B;&#x578B;&#x7684;&#x7B97;&#x6CD5;&#x7528;CUDA&#x8FDB;&#x884C;&#xFF08;&#x90E8;&#x5206;&#xFF09;&#x6539;&#x5199;&#xFF0C;&#x4ECE;&#x800C;&#x8FBE;&#x5230;&#x51E0;&#x500D;&#x5230;&#x6570;&#x767E;&#x500D;&#x7684;&#x52A0;&#x901F;&#x6548;&#x679C;&#x3002;&#x5C24;&#x5176;&#x662F;&#x5728;&#x673A;&#x5668;&#x5B66;&#x4E60;&#xFF0C;&#x7279;&#x522B;&#x662F;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x7684;&#x6D6A;&#x6F6E;&#x6765;&#x4E34;&#x540E;&#xFF0C;GPU&#x52A0;&#x901F;&#x5DF2;&#x7ECF;&#x662F;&#x5404;&#x7C7B;&#x5DE5;&#x5177;&#x5B9E;&#x73B0;&#x7684;&#x57FA;&#x672C;&#x5E95;&#x5C42;&#x6784;&#x67B6;&#x4E4B;&#x4E00;&#x3002;&#x672C;&#x7AE0;&#x91CC;&#xFF0C;&#x4F1A;&#x7B80;&#x5355;&#x4ECB;&#x7ECD;GPU&#x7684;&#x57FA;&#x672C;&#x67B6;&#x6784;&#xFF0C;&#x6027;&#x80FD;&#x6307;&#x6807;&#xFF0C;&#x6846;&#x67B6;&#x9009;&#x62E9;&#x7B49;&#x7B49;&#x548C;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x76F8;&#x5173;&#x7684;&#x5185;&#x5BB9;&#x3002;</p>
+<h2 class="mume-header" id="151-%E4%BB%80%E4%B9%88%E6%98%AF%E5%BC%82%E6%9E%84%E8%AE%A1%E7%AE%97">15.1 &#x4EC0;&#x4E48;&#x662F;&#x5F02;&#x6784;&#x8BA1;&#x7B97;&#xFF1F;</h2>
+
+<p>&#x5F02;&#x6784;&#x8BA1;&#x7B97;&#x662F;&#x57FA;&#x4E8E;&#x4E00;&#x4E2A;&#x66F4;&#x52A0;&#x6734;&#x7D20;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x201D;&#x5F02;&#x6784;&#x73B0;&#x8C61;&#x201C;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x4E0D;&#x540C;&#x8BA1;&#x7B97;&#x5E73;&#x53F0;&#x4E4B;&#x95F4;&#xFF0C;&#x7531;&#x4E8E;&#x786C;&#x4EF6;&#x7ED3;&#x6784;&#xFF08;&#x5305;&#x62EC;&#x8BA1;&#x7B97;&#x6838;&#x5FC3;&#x548C;&#x5185;&#x5B58;&#xFF09;&#xFF0C;&#x6307;&#x4EE4;&#x96C6;&#x548C;&#x5E95;&#x5C42;&#x8F6F;&#x4EF6;&#x5B9E;&#x73B0;&#x7B49;&#x65B9;&#x9762;&#x7684;&#x4E0D;&#x540C;&#x800C;&#x6709;&#x7740;&#x4E0D;&#x540C;&#x7684;&#x7279;&#x6027;&#x3002;&#x5F02;&#x6784;&#x8BA1;&#x7B97;&#x5C31;&#x662F;&#x4F7F;&#x7528;&#x7ED3;&#x5408;&#x4E86;&#x4E24;&#x4E2A;&#x6216;&#x8005;&#x591A;&#x4E2A;&#x4E0D;&#x540C;&#x7684;&#x8BA1;&#x7B97;&#x5E73;&#x53F0;&#xFF0C;&#x5E76;&#x8FDB;&#x884C;&#x534F;&#x540C;&#x8FD0;&#x7B97;&#x3002;&#x6BD4;&#x5982;&#xFF0C;&#x6BD4;&#x8F83;&#x5E38;&#x89C1;&#x7684;&#xFF0C;&#x5728;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x548C;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x4E2D;&#x5DF2;&#x7ECF;&#x6BD4;&#x8F83;&#x6210;&#x719F;&#x7684;&#x67B6;&#x6784;&#xFF1A;CPU&#x548C;GPU&#x7684;&#x5F02;&#x6784;&#x8BA1;&#x7B97;;&#x6B64;&#x5916;&#x8FD8;&#x6709;&#x6BD4;&#x8F83;&#x65B0;&#x7684;Google&#x63A8;&#x51FA;&#x7684;&#x534F;&#x5904;&#x7406;&#x5668;&#xFF08;TPU&#xFF09;&#xFF0C;&#x6839;&#x636E;&#x76EE;&#x7684;&#x800C;&#x5B9A;&#x5236;&#x7684;ASIC&#xFF0C;&#x53EF;&#x7F16;&#x7A0B;&#x7684;FPGA&#x7B49;&#x4E5F;&#x90FD;&#x662F;&#x73B0;&#x5728;&#x5728;&#x5F02;&#x6784;&#x8BA1;&#x7B97;&#x4E2D;&#x4F7F;&#x7528;&#x6BD4;&#x8F83;&#x591A;&#x7684;&#x534F;&#x5904;&#x7406;&#x5668;&#x3002;&#x800C;&#xFF0C;&#x672C;&#x7AE0;&#x4E2D;&#x4F1A;&#x7740;&#x91CD;&#x4ECB;&#x7ECD;&#x548C;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x5171;&#x540C;&#x7E41;&#x8363;&#x7684;&#x56FE;&#x5F62;&#x52A0;&#x7B97;&#x5668;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x5E38;&#x8BF4;&#x7684;GPU&#x3002;</p>
+<h2 class="mume-header" id="152-%E4%BB%80%E4%B9%88%E6%98%AFgpgpu">15.2 &#x4EC0;&#x4E48;&#x662F;GPGPU&#xFF1F;</h2>
+
+<p>GPU,&#x5C31;&#x5982;&#x540D;&#x5B57;&#x6240;&#x5305;&#x542B;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x539F;&#x672C;&#x5F00;&#x53D1;&#x7684;&#x76EE;&#x7684;&#x662F;&#x4E3A;&#x4E86;&#x8FDB;&#x884C;&#x8BA1;&#x7B97;&#x673A;&#x56FE;&#x5F62;&#x6E32;&#x67D3;&#xFF0C;&#x800C;&#x51CF;&#x5C11;&#x5BF9;&#x4E8E;CPU&#x7684;&#x8D1F;&#x8F7D;&#x3002;&#x7531;&#x4E8E;&#x56FE;&#x50CF;&#x7684;&#x539F;&#x59CB;&#x7279;&#x6027;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x50CF;&#x7D20;&#x95F4;&#x7684;&#x72EC;&#x7ACB;&#x6027;&#xFF0C;&#x6240;&#x4EE5;GPU&#x5728;&#x8BBE;&#x8BA1;&#x7684;&#x65F6;&#x5019;&#x5C31;&#x9075;&#x4ECE;&#x4E86;&#x201C;&#x5355;&#x6307;&#x4EE4;&#x6D41;&#x591A;&#x6570;&#x636E;&#x6D41;&#xFF08;SIMD&#xFF09;&#x201D;&#x67B6;&#x6784;&#xFF0C;&#x4F7F;&#x5F97;&#x540C;&#x4E00;&#x4E2A;&#x6307;&#x4EE4;&#xFF08;&#x6BD4;&#x5982;&#x56FE;&#x50CF;&#x7684;&#x67D0;&#x79CD;&#x53D8;&#x6362;&#xFF09;&#xFF0C;&#x53EF;&#x4EE5;&#x540C;&#x65F6;&#x5728;&#x591A;&#x4E00;&#x4E2A;&#x50CF;&#x7D20;&#x70B9;&#x4E0A;&#x8FDB;&#x884C;&#x8BA1;&#x7B97;&#xFF0C;&#x4ECE;&#x800C;&#x5F97;&#x5230;&#x6BD4;&#x8F83;&#x5927;&#x7684;&#x541E;&#x5410;&#x91CF;&#xFF0C;&#x624D;&#x80FD;&#x4F7F;&#x5F97;&#x8BA1;&#x7B97;&#x673A;&#x53EF;&#x4EE5;&#x5B9E;&#x65F6;&#x6E32;&#x67D3;&#x6BD4;&#x8F83;&#x590D;&#x6742;&#x7684;2D/3D&#x573A;&#x666F;&#x3002;&#x5728;&#x6700;&#x521D;&#x7684;&#x5E94;&#x7528;&#x573A;&#x666F;&#x91CC;&#xFF0C;GPU&#x5E76;&#x4E0D;&#x662F;&#x4F5C;&#x4E3A;&#x4E00;&#x79CD;&#x901A;&#x7528;&#x8BA1;&#x7B97;&#x5E73;&#x53F0;&#x51FA;&#x73B0;&#x7684;&#xFF0C;&#x76F4;&#x5230;2007&#x5E74;&#x5DE6;&#x53F3;&#xFF0C;&#x4E00;&#x5BB6;&#x4F1F;&#x5927;&#x7684;&#x516C;&#x53F8;&#x5C06;GPU&#x5E26;&#x5230;&#x901A;&#x7528;&#x8BA1;&#x7B97;&#x7684;&#x4E16;&#x754C;&#x91CC;&#xFF0C;&#x4F7F;&#x5F97;&#x5176;&#x53EF;&#x4EE5;&#x5728;&#x76F8;&#x5BF9;&#x6BD4;&#x8F83;&#x53CB;&#x597D;&#x7684;&#x7F16;&#x7A0B;&#x73AF;&#x5883;&#xFF08;CUDA/OpenCL&#xFF09;&#x91CC;&#x52A0;&#x901F;&#x901A;&#x7528;&#x7A0B;&#x5E8F;&#x6210;&#x4E86;&#x53EF;&#x80FD;&#x3002;&#x4ECE;&#x6B64;&#x4E4B;&#x540E;&#xFF0C;GPU&#x901A;&#x7528;&#x8BA1;&#x7B97;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;GPGPU&#x5C31;&#x6210;&#x4E86;&#x5B66;&#x754C;&#x548C;&#x5DE5;&#x4E1A;&#x754C;&#x90FD;&#x9891;&#x7E41;&#x4F7F;&#x7528;&#x7684;&#x6280;&#x672F;&#xFF0C;&#x5728;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x7206;&#x53D1;&#x7684;&#x5E74;&#x4EE3;&#x91CC;&#xFF0C;GPGPU&#x6210;&#x4E86;&#x63A8;&#x52A8;&#x8FD9;&#x80A1;&#x6D6A;&#x6F6E;&#x975E;&#x5E38;&#x91CD;&#x8981;&#x7684;&#x529B;&#x91CF;&#x3002;</p>
+<h2 class="mume-header" id="153-gpu%E6%9E%B6%E6%9E%84%E7%AE%80%E4%BB%8B">15.3 GPU&#x67B6;&#x6784;&#x7B80;&#x4ECB;</h2>
+
+<p>GPU&#xFF0C;&#x56FE;&#x5F62;&#x663E;&#x793A;&#x82AF;&#x7247;&#x4F5C;&#x4E3A;&#x4E0D;&#x540C;&#x4E8E;CPU&#x7684;&#x8BBE;&#x8BA1;&#x903B;&#x8F91;&#x548C;&#x5E94;&#x7528;&#x573A;&#x666F;&#xFF0C;&#x6709;&#x7740;&#x975E;&#x5E38;&#x4E0D;&#x540C;&#x7684;&#x67B6;&#x6784;&#xFF0C;&#x672C;&#x90E8;&#x5206;&#x5C06;&#x7B80;&#x5355;&#x4ECB;&#x7ECD;GPU&#x7A76;&#x7ADF;&#x662F;&#x5982;&#x4F55;&#x67B6;&#x6784;&#xFF0C;&#x5176;&#x4E2D;&#x7684;&#x8BA1;&#x7B97;&#x6838;&#x5FC3;&#x6709;&#x54EA;&#x4E9B;&#x7279;&#x6027;&#x3002;</p>
+<h3 class="mume-header" id="1531-%E5%A6%82%E4%BD%95%E9%80%9A%E4%BF%97%E7%90%86%E8%A7%A3gpu%E7%9A%84%E6%9E%B6%E6%9E%84">15.3.1 &#x5982;&#x4F55;&#x901A;&#x4FD7;&#x7406;&#x89E3;GPU&#x7684;&#x67B6;&#x6784;&#xFF1F;</h3>
+
+<p>&#x9996;&#x5148;&#xFF0C;&#x4E0B;&#x56FE;&#x7B80;&#x5355;&#x5730;&#x5C55;&#x793A;&#x4E86;&#x51E0;&#x4E2A;GPU&#x4E0D;&#x540C;&#x4E8E;CPU&#x7684;&#x7279;&#x6027;&#xFF1A;</p>
+<ul>
+<li>&#x8BA1;&#x7B97;&#x6838;&#x5FC3;&#xFF1A; &#x56FE;&#x4E2D;&#x7684;CPU,i7-5960&#xFF0C;Intel&#x7684;&#x7B2C;&#x4E94;&#x4EE3;Broadwell&#x67B6;&#x6784;&#xFF0C;&#x5176;&#x4E2D;&#x5305;&#x62EC;&#x4E86;8&#x4E2A;CPU&#x6838;&#x5FC3;(&#x652F;&#x6301;16&#x7EBF;&#x7A0B;)&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x7406;&#x8BBA;&#x4E0A;&#x53EF;&#x4EE5;&#x6709;16&#x4E2A;&#x4E0D;&#x540C;&#x7684;&#x8FD0;&#x7B97;&#x540C;&#x65F6;&#x8FDB;&#x884C;&#x3002;&#x9664;&#x4E86;8&#x4E2A;&#x6838;&#x5FC3;&#x8BA1;&#x7B97;&#x5355;&#x5143;&#xFF0C;&#x5927;&#x90E8;&#x5206;&#x7684;&#x82AF;&#x7247;&#x9762;&#x79EF;&#x662F;&#x88AB;3&#x7EA7;&#x7F13;&#x5B58;&#xFF0C;&#x5185;&#x5B58;&#x548C;&#x63A7;&#x5236;&#x7535;&#x8DEF;&#x5360;&#x636E;&#x4E86;&#x3002;&#x540C;&#x6837;&#x7684;&#xFF0C;&#x6765;&#x81EA;Nvidia&#x7684;GTX980GPU&#xFF0C;&#x5728;&#x5DEE;&#x4E0D;&#x591A;&#x7684;&#x82AF;&#x7247;&#x9762;&#x79EF;&#x4E0A;&#xFF0C;&#x5927;&#x90E8;&#x5206;&#x662F;&#x8BA1;&#x7B97;&#x5355;&#x5143;&#xFF0C;16&#x4E2A;SM&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x6D41;&#x5904;&#x7406;&#x5355;&#x5143;&#xFF0C;&#x6BCF;&#x4E2A;&#x6D41;&#x5904;&#x7406;&#x5355;&#x5143;&#x4E2D;&#x5305;&#x542B;&#x7740;128&#x4E2A;CUDA&#x8BA1;&#x7B97;&#x6838;&#x5FC3;&#xFF0C;&#x6240;&#x4EE5;&#x603B;&#x5171;&#x6765;&#x8BF4;&#xFF0C;&#x6709;2048&#x4E2A;GPU&#x8FD0;&#x7B97;&#x5355;&#x5143;&#xFF0C;&#x76F8;&#x5E94;&#x5730;&#x8FD9;&#x9897;GPU&#x7406;&#x8BBA;&#x4E0A;&#x53EF;&#x4EE5;&#x5728;&#x4E00;&#x4E2A;&#x65F6;&#x949F;&#x5468;&#x671F;&#x5185;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;2048&#x6B21;&#x5355;&#x7CBE;&#x5EA6;&#x8FD0;&#x7B97;&#x3002;</li>
+</ul>
+<p><img src="./img/ch15/cpu_gpu.png" alt="CPU&#x548C;GPU&#x7684;&#x7B80;&#x5355;&#x67B6;&#x6784;&#x5BF9;&#x6BD4;&#x56FE;"></p>
+<ul>
+<li>&#x8BA1;&#x7B97;&#x6838;&#x5FC3;&#x9891;&#x7387;&#xFF1A;&#x65F6;&#x949F;&#x9891;&#x7387;&#xFF0C;&#x4EE3;&#x8868;&#x6BCF;&#x4E00;&#x79D2;&#x4E2D;&#x5185;&#x80FD;&#x8FDB;&#x884C;&#x540C;&#x6B65;&#x8109;&#x51B2;&#x6B21;&#x6570;&#xFF0C;&#x4E5F;&#x662F;&#x4ECE;&#x4E00;&#x4E2A;&#x4FA7;&#x9762;&#x53CD;&#x6620;&#x4E00;&#x4E2A;&#x8BA1;&#x7B97;&#x5143;&#x4EF6;&#x7684;&#x5DE5;&#x4F5C;&#x901F;&#x5EA6;&#x3002;&#x4E0B;&#x56FE;&#x4E2D;&#x5BF9;&#x6BD4;&#x4E86;&#x4E2A;&#x522B;&#x65E9;&#x671F;&#x4EA7;&#x54C1;&#xFF0C;&#x6BD4;&#x5982;Intel&#x7684;x5650&#x548C;&#x51E0;&#x6B3E;Nvidia&#x7684;GPU&#x3002;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#x6838;&#x5FC3;&#x9891;&#x7387;&#x800C;&#x8A00;&#xFF0C;CPU&#x8981;&#x8FDC;&#x9AD8;&#x4E8E;GPU&#x3002;&#x5BF9;&#x4E8E;CPU&#x800C;&#x8A00;&#xFF0C;&#x5728;&#x4E0D;&#x8003;&#x8651;&#x80FD;&#x6E90;&#x6D88;&#x8017;&#x548C;&#x5236;&#x7A0B;&#x5DE5;&#x827A;&#x9650;&#x5236;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x8FFD;&#x6C42;&#x66F4;&#x9AD8;&#x7684;&#x4E3B;&#x9891;&#x3002;&#x4F46;&#xFF0C;&#x5728;GPU&#x7684;&#x8BBE;&#x8BA1;&#x4E2D;&#xFF0C;&#x91C7;&#x7528;&#x4E86;&#x591A;&#x6838;&#x5FC3;&#x8BBE;&#x8BA1;&#xFF0C;&#x5373;&#x4F7F;&#x662F;&#x63D0;&#x9AD8;&#x4E00;&#x4E9B;&#x9891;&#x7387;&#xFF0C;&#x5176;&#x5B9E;&#x5BF9;&#x4E8E;&#x603B;&#x4F53;&#x6027;&#x80FD;&#x5F71;&#x50CF;&#x4E0D;&#x4F1A;&#x7279;&#x522B;&#x5927;&#x3002;&#x5F53;&#x7136;&#xFF0C;&#x5176;&#x4E2D;&#x8FD8;&#x6709;&#x80FD;&#x8017;&#x65B9;&#x9762;&#x7684;&#x8003;&#x8651;&#xFF0C;&#x907F;&#x514D;&#x53D1;&#x70ED;&#x8FC7;&#x9AD8;&#xFF0C;&#x4E5F;&#x8FDB;&#x884C;&#x4E86;&#x6743;&#x8861;&#x3002;&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x53EF;&#x80FD;&#x7684;&#x539F;&#x56E0;&#x662F;&#xFF0C;&#x5728;&#x4E00;&#x4E2A;&#x6D41;&#x5904;&#x7406;&#x5668;&#x4E2D;&#x7684;&#x6BCF;&#x4E2A;&#x6838;&#x5FC3;&#xFF08;CUDA&#x6838;&#x5FC3;&#xFF09;&#x7684;&#x8FD0;&#x884C;&#x5171;&#x4EAB;&#x975E;&#x5E38;&#x6709;&#x9650;&#x7684;&#x7F13;&#x5B58;&#x548C;&#x5BC4;&#x5B58;&#x5668;&#xFF0C;&#x7531;&#x4E8E;&#x5171;&#x4EAB;&#x5185;&#x5B58;&#x4E5F;&#x662F;&#x6709;&#x6027;&#x80FD;&#x6781;&#x9650;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x5373;&#x4F7F;&#x6BCF;&#x4E2A;GPU&#x6838;&#x5FC3;&#x9891;&#x7387;&#x63D0;&#x9AD8;&#xFF0C;&#x5982;&#x679C;&#x88AB;&#x7F13;&#x5B58;&#x7B49;&#x62D6;&#x7D2F;&#x4E5F;&#x662F;&#x65E0;&#x6CD5;&#x5C55;&#x73B0;&#x51FA;&#x9AD8;&#x6027;&#x80FD;&#x7684;&#x3002;</li>
+</ul>
+<p><img src="./img/ch15/cpu_specs.png" alt="CPU&#x7B80;&#x5355;&#x4FE1;&#x606F;"></p>
+<p><img src="./img/ch15/gpu_specs.png" alt="GPU&#x7684;&#x7B80;&#x5355;&#x4FE1;&#x606F;&#x5BF9;&#x6BD4;"></p>
+<ul>
+<li>&#x5185;&#x5B58;&#x67B6;&#x6784;&#xFF1A;GPU&#x7684;&#x591A;&#x5C42;&#x5185;&#x5B58;&#x67B6;&#x6784;&#x5305;&#x62EC;&#x5168;&#x5C40;&#x5185;&#x5B58;&#xFF08;&#x4E5F;&#x5C31;&#x662F;&#x901A;&#x5E38;&#x610F;&#x4E49;&#x4E0A;&#x5927;&#x90E8;&#x5206;&#x6BD4;&#x8F83;&#x5173;&#x6CE8;&#x7684;&#x5185;&#x5B58;&#xFF0C;&#x5728;&#x82E5;&#x5E72;&#x5230;16GB&#x4E4B;&#x95F4;&#xFF0C;&#x622A;&#x81F3;&#x5230;&#x5F53;&#x524D;&#x6700;&#x65B0;&#xFF09;&#xFF0C;2&#x7EA7;&#x7F13;&#x5B58;&#xFF0C;&#x548C;&#x82AF;&#x7247;&#x4E0A;&#x7684;&#x5B58;&#x50A8;&#xFF08;&#x5305;&#x62EC;&#x5BC4;&#x5B58;&#x5668;&#xFF0C;&#x548C;1&#x7EA7;&#x7F13;&#x5B58;&#x5171;&#x7528;&#x7684;&#x5171;&#x4EAB;&#x5185;&#x5B58;&#xFF0C;&#x53EA;&#x8BFB;/&#x7EB9;&#x7406;&#x7F13;&#x5B58;&#x548C;&#x5E38;&#x91CF;&#x7F13;&#x5B58;&#xFF09;&#x3002;&#x901A;&#x5E38;&#x6765;&#x8BF4;&#xFF0C;&#x6700;&#x9AD8;&#x901F;&#x7684;&#x5171;&#x4EAB;&#x5185;&#x5B58;/&#x7F13;&#x5B58;&#x548C;&#x5BC4;&#x5B58;&#x5668;&#x90FD;&#x662F;&#x975E;&#x5E38;&#x6709;&#x9650;&#x7684;&#xFF0C;&#x6BD4;&#x5982;&#x5728;Tesla&#x7684;K20&#x4E2D;&#xFF0C;&#x53EA;&#x6709;48K&#x7684;&#x7F13;&#x5B58;&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;&#x5171;&#x4EAB;&#x5185;&#x5B58;&#x6216;&#x8005;1&#x7EA7;&#x7F13;&#x5B58;&#x4F7F;&#x7528;&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x5F88;&#x591A;&#x7528;GPU&#x52A0;&#x901F;&#x7B97;&#x6CD5;&#x5B9E;&#x73B0;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x6709;&#x6548;&#x5730;&#x5229;&#x7528;&#x8FD9;&#x4E9B;&#x9AD8;&#x901F;&#x7F13;&#x5B58;&#x662F;&#x4F7F;&#x5F97;&#x6027;&#x80FD;&#x63D0;&#x5347;&#x7684;&#x975E;&#x5E38;&#x91CD;&#x8981;&#x7684;&#x65B9;&#x9762;&#x3002;</li>
+</ul>
+<p><img src="./img/ch15/gpu_memory_arch.png" alt="GPU&#x7684;&#x7B80;&#x5355;&#x4FE1;&#x606F;&#x5BF9;&#x6BD4;"></p>
+<p><img src="./img/ch15/gpu_memory.png" alt="GPU&#x7684;&#x5185;&#x5B58;&#x67B6;&#x6784;&#x5BB9;&#x91CF;&#x4FE1;&#x606F;"></p>
+<h3 class="mume-header" id="1532-cuda-%E6%A0%B8%E5%BF%83%E6%98%AF%E4%BB%80%E4%B9%88">15.3.2 CUDA &#x6838;&#x5FC3;&#x662F;&#x4EC0;&#x4E48;&#xFF1F;</h3>
+
+<p>&#x4E0A;&#x9762;&#x63D0;&#x5230;&#x5728;&#x4E00;&#x4E2A;GPU&#x82AF;&#x7247;&#x91CC;&#xFF0C;&#x4F1A;&#x5F88;&#x51E0;&#x5343;&#x4E2A;CUDA&#x6838;&#x5FC3;&#xFF0C;&#x88AB;&#x5206;&#x5E03;&#x5728;&#x591A;&#x4E2A;&#x6D41;&#x5904;&#x7406;&#x5355;&#x5143;&#xFF08;SM&#xFF09;&#x4E2D;&#xFF0C;&#x6BD4;&#x5982;&#x4E0A;&#x9762;&#x63D0;&#x5230;&#x65E9;&#x671F;&#x7684;GTX980&#x4E2D;&#x7684;16&#x4E2A;SM&#x4E2D;&#x5404;&#x5305;&#x542B;&#x4E86;128&#x4E2A;CUDA&#x6838;&#x5FC3;&#x3002;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF0C;&#x4F5C;&#x4E3A;GPU&#x67B6;&#x6784;&#x4E2D;&#x7684;&#x6700;&#x5C0F;&#x5355;&#x5143;&#xFF0C;&#x5176;&#x5B9E;&#x5B83;&#x7684;&#x8BBE;&#x8BA1;&#x548C;CPU&#x6709;&#x7740;&#x975E;&#x5E38;&#x7C7B;&#x4F3C;&#x7684;&#x7ED3;&#x6784;&#xFF0C;&#x5176;&#x4E2D;&#x5305;&#x62EC;&#x4E86;&#x4E00;&#x4E2A;&#x6D6E;&#x70B9;&#x8FD0;&#x7B97;&#x5355;&#x5143;&#x548C;&#x6574;&#x578B;&#x8FD0;&#x7B97;&#x5355;&#x5143;&#xFF0C;&#x548C;&#x63A7;&#x5236;&#x5355;&#x5143;&#x3002;&#x540C;&#x4E00;&#x4E2A;&#x6D41;&#x5904;&#x7406;&#x5668;&#x4E2D;&#xFF0C;&#x6240;&#x6709;&#x7684;CUDA&#x6838;&#x5FC3;&#x5C06;&#x540C;&#x6B65;&#x6267;&#x884C;&#x540C;&#x4E00;&#x4E2A;&#x6307;&#x4EE4;&#xFF0C;&#x4F46;&#x662F;&#x4F5C;&#x7528;&#x4E8E;&#x4E0D;&#x540C;&#x7684;&#x6570;&#x636E;&#x70B9;&#x4E0A;&#x3002;</p>
+<p><img src="./img/ch15/cudacore.jpg" alt="CUDA&#x7B80;&#x5355;&#x4ECB;&#x7ECD;"></p>
+<p>&#x4E00;&#x822C;&#x6765;&#x8BF4;&#xFF0C;&#x66F4;&#x52A0;&#x591A;&#x7684;CUDA&#x6838;&#x5FC3;&#x610F;&#x5473;&#x7740;&#x6709;&#x66F4;&#x591A;&#x7684;&#x5E76;&#x884C;&#x6267;&#x884C;&#x5355;&#x5143;&#xFF0C;&#x6240;&#x4EE5;&#x4E5F;&#x5C31;&#x53EF;&#x4EE5;&#x7247;&#x9762;&#x5730;&#x8BA4;&#x4E3A;&#x662F;&#x6709;&#x66F4;&#x52A0;&#x9AD8;&#x7684;&#x6027;&#x80FD;&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x5176;&#x5B9E;&#x8FD9;&#x4E2A;&#x4E5F;&#x662F;&#x53D6;&#x51B3;&#x4E8E;&#x5F88;&#x591A;&#x65B9;&#x9762;&#xFF0C;&#x6700;&#x91CD;&#x8981;&#x7684;&#x662F;&#x7B97;&#x6CD5;&#x5728;&#x5E76;&#x884C;&#x5B9E;&#x73B0;&#x7684;&#x65F6;&#x5019;&#x6709;&#x6CA1;&#x6709;&#x9AD8;&#x6548;&#x5730;&#x8C03;&#x5EA6;&#x548C;&#x5185;&#x5B58;&#x7684;&#x4F7F;&#x7528;&#x4F18;&#x5316;&#x3002;&#x5728;&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x7684;&#x5927;&#x90E8;&#x5206;GPU&#x52A0;&#x901F;&#x7684;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x6846;&#x67B6;&#x91CC;&#xFF0C;&#x5305;&#x62EC;Tensorflow&#xFF0C;PyTorch&#x7B49;&#x90FD;&#x662F;&#x4F9D;&#x8D56;&#x4E8E;&#x5E95;&#x5C42;&#x7684;GPU&#x7684;&#x77E9;&#x9635;&#x52A0;&#x901F;&#x4EE3;&#x7801;&#x7684;&#x5B9E;&#x73B0;&#x3002;&#x4E3A;&#x6B64;Nvidia&#x516C;&#x53F8;&#x4E5F;&#x662F;&#x5236;&#x5B9A;&#x548C;&#x5B9E;&#x73B0;&#x4E86;&#x7EDF;&#x4E00;&#x7684;&#x63A5;&#x53E3;&#xFF0C;&#x6BD4;&#x5982;cuDNN&#xFF0C;&#x65B9;&#x4FBF;&#x4E0A;&#x5C42;&#x6846;&#x67B6;&#x66F4;&#x597D;&#x7684;&#x5229;&#x7528;GPU&#x7684;&#x6027;&#x80FD;&#x3002;</p>
+<h3 class="mume-header" id="1533-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8gpu">15.3.3 &#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x4F7F;&#x7528;GPU&#xFF1F;</h3>
+
+<p>&#x5BF9;&#x4E8E;&#x5E76;&#x884C;&#x8BA1;&#x7B97;&#x6765;&#x8BF4;&#xFF0C;&#x53EF;&#x4EE5;&#x975E;&#x5E38;&#x7C97;&#x7565;&#x5730;&#x5206;&#x4E3A;&#xFF1A;</p>
+<ul>
+<li>&#x5E76;&#x884C;&#x6307;&#x4EE4;&#xFF1A; &#x4E5F;&#x5C31;&#x662F;&#x591A;&#x4E2A;&#x6307;&#x4EE4;&#x53EF;&#x4EE5;&#x540C;&#x65F6;&#x5206;&#x914D;&#x5230;&#x4E0D;&#x540C;&#x7684;&#x8BA1;&#x7B97;&#x6838;&#x5FC3;&#x4E0A;&#x540C;&#x65F6;&#x8FDB;&#x884C;&#xFF0C;&#x800C;&#x4ED6;&#x4EEC;&#x7684;&#x64CD;&#x4F5C;&#x662F;&#x4E0D;&#x540C;&#x7684;&#xFF0C;&#x5E76;&#x4E14;&#x4ED6;&#x4EEC;&#x4E4B;&#x95F4;&#x76F8;&#x4E92;&#x72EC;&#x7ACB;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x989D;&#x5916;&#x7684;&#x540C;&#x6B65;&#x548C;&#x4FE1;&#x606F;&#x5171;&#x4EAB;&#x3002;</li>
+<li>&#x5E76;&#x884C;&#x6570;&#x636E;&#x6D41;&#xFF1A; &#x5982;&#x679C;&#x6570;&#x636E;&#x672C;&#x8EAB;&#x5B58;&#x5728;&#x7684;&#x5929;&#x7136;&#x7684;&#x72EC;&#x7ACB;&#x6027;&#xFF0C;&#x6BD4;&#x5982;&#x56FE;&#x50CF;&#x4E2D;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x50CF;&#x7D20;&#xFF0C;&#x90A3;&#x4E48;&#x5728;&#x5BF9;&#x8FD9;&#x4E2A;&#x56FE;&#x50CF;&#x505A;&#x5904;&#x7406;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x540C;&#x4E00;&#x4E2A;&#x6307;&#x4EE4;&#x53EF;&#x4EE5;&#x540C;&#x65F6;&#x4F5C;&#x7528;&#x4E8E;&#x6BCF;&#x4E00;&#x4E2A;&#x50CF;&#x7D20;&#x3002;&#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x8FD9;&#x4E2A;&#x5BF9;&#x4E8E;&#x5B8C;&#x6574;&#x56FE;&#x50CF;&#x7684;&#x64CD;&#x4F5C;&#x53EF;&#x4EE5;&#x5E76;&#x884C;&#x5316;&#x3002;&#x7406;&#x8BBA;&#x4E0A;&#xFF0C;&#x5982;&#x679C;&#x5185;&#x5B58;&#x4E0D;&#x662F;&#x95EE;&#x9898;&#xFF0C;&#x5E76;&#x4E14;&#x8BA1;&#x7B97;&#x5355;&#x5143;&#x7684;&#x6570;&#x91CF;&#x5927;&#x4E8E;&#x6574;&#x4E2A;&#x56FE;&#x50CF;&#x4E2D;&#x603B;&#x50CF;&#x7D20;&#x70B9;&#x7684;&#x8BDD;&#xFF0C;&#x8FD9;&#x4E2A;&#x64CD;&#x4F5C;&#x53EF;&#x4EE5;&#x5728;&#x4E00;&#x4E2A;&#x65F6;&#x949F;&#x5468;&#x671F;&#x5185;&#x5B8C;&#x6210;&#x3002;</li>
+</ul>
+<p>GPU&#x6574;&#x4F53;&#x7684;&#x67B6;&#x6784;&#x800C;&#x8A00;&#xFF0C;&#x67D0;&#x79CD;&#x610F;&#x4E49;&#x4E0A;&#x662F;&#x540C;&#x65F6;&#x652F;&#x6301;&#x4EE5;&#x4E0A;&#x4E24;&#x79CD;&#x5E76;&#x884C;&#x6A21;&#x5F0F;&#x3002;&#x5728;&#x540C;&#x4E00;&#x4E2A;&#x6D41;&#x5904;&#x7406;&#x5668;&#x4E2D;&#xFF0C;&#x91C7;&#x7528;&#x4E86;&#x201C;&#x5355;&#x4E00;&#x6307;&#x4EE4;&#x5E76;&#x884C;&#x6570;&#x636E;&#x6D41;&#x7684;&#x6A21;&#x5F0F;&#x201D;&#xFF0C;&#x800C;&#x5728;&#x591A;&#x4E2A;&#x6D41;&#x5904;&#x7406;&#x5668;&#x4E2D;&#xFF0C;&#x540C;&#x4E00;&#x65F6;&#x95F4;&#x53EF;&#x4EE5;&#x6D3E;&#x53D1;&#x4E0D;&#x540C;&#x7684;&#x6307;&#x4EE4;&#x3002;&#x4ECE;&#x8FD9;&#x4E00;&#x70B9;&#x51FA;&#x53D1;&#xFF0C;GPU&#x82AF;&#x7247;&#x7B97;&#x662F;&#x4E00;&#x4E2A;&#x975E;&#x5E38;&#x7075;&#x6D3B;&#x7684;&#x67B6;&#x6784;&#x3002;&#x4E00;&#x4E2A;&#x82AF;&#x7247;&#x4E2D;&#xFF0C;&#x6D41;&#x5904;&#x7406;&#x5668;&#x7684;&#x4E2A;&#x6570;&#x548C;&#x5176;&#x4E2D;&#x5305;&#x542B;&#x7684;CUDA&#x6838;&#x5FC3;&#x7684;&#x6570;&#x91CF;&#x4E5F;&#x662F;&#x4E00;&#x79CD;&#x9762;&#x5411;&#x5E94;&#x7528;&#x8BBE;&#x8BA1;&#x65F6;&#x5019;&#x627E;&#x5230;&#x7684;&#x4E00;&#x4E2A;&#x5E73;&#x8861;&#x70B9;&#x3002;</p>
+<p>&#x57FA;&#x4E8E;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x4E2D;&#x5927;&#x90E8;&#x5206;&#x7684;&#x64CD;&#x4F5C;&#x7684;&#x5929;&#x7136;&#x5E76;&#x884C;&#x6027;&#xFF08;&#x5927;&#x91CF;&#x7684;&#x77E9;&#x9635;&#x64CD;&#x4F5C;&#xFF09;&#xFF0C;GPU&#x5728;&#x5F53;&#x4E0B;&#x8FD8;&#x662F;&#x4E00;&#x79CD;&#x975E;&#x5E38;&#x9002;&#x5408;&#x7684;&#x8BA1;&#x7B97;&#x5E73;&#x53F0;&#x3002;&#x4E00;&#x4E2A;&#x975E;&#x5E38;&#x5178;&#x578B;&#x7684;&#x4F8B;&#x5B50;&#x5C31;&#x662F;&#x5E38;&#x89C1;&#x7684;&#x77E9;&#x9635;&#x76F8;&#x4E58;&#xFF08;&#x5982;&#x4E0B;&#x56FE;&#xFF09;&#xFF0C;&#x8981;&#x8BA1;&#x7B97;Z = X&#xD7;Y&#xFF0C;&#x901A;&#x8FC7;&#x5E76;&#x884C;&#x8BA1;&#x7B97;&#xFF0C;X&#x548C;Y&#x4E2D;&#x7684;&#x884C;&#x5411;&#x91CF;&#x548C;&#x5217;&#x5411;&#x91CF;&#x7684;&#x9010;&#x5143;&#x7D20;&#x76F8;&#x4E58;&#x5C31;&#x53EF;&#x4EE5;&#x540C;&#x65F6;&#x8FDB;&#x884C;&#xFF0C;&#x53EA;&#x8981;&#x5F97;&#x5230;&#x7ED3;&#x679C;&#x540E;&#x518D;&#x8FDB;&#x884C;&#x7D2F;&#x52A0;&#xFF0C;&#x800C;&#x4E14;&#x7D2F;&#x52A0;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#x4E5F;&#x662F;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x5E76;&#x884C;&#x5316;&#xFF0C;&#x4F7F;&#x5F97;&#x6548;&#x7387;&#x6709;&#x975E;&#x5E38;&#x5927;&#x7684;&#x63D0;&#x9AD8;&#x3002;Nvidia&#x4E5F;&#x662F;&#x5236;&#x5B9A;&#x548C;&#x5F00;&#x53D1;&#x4E86;&#x4E00;&#x5957;&#x5E95;&#x5C42;&#x7C7B;&#x5E93;&#xFF0C;CUBlas&#x65B9;&#x4FBF;&#x5F00;&#x53D1;&#x8005;&#x3002;&#x6211;&#x4EEC;&#x719F;&#x6089;&#x7684;&#x51E0;&#x5927;&#x6846;&#x67B6;(e.g. Tensorflow, PyTorch&#x7B49;)&#x4E5F;&#x662F;&#x9075;&#x5FAA;&#x548C;&#x4F7F;&#x7528;&#x4E86;&#x8FD9;&#x4E9B;&#x5E76;&#x884C;&#x7C7B;&#x5E93;&#xFF0C;&#x6240;&#x4EE5;&#x624D;&#x4F7F;&#x5F97;&#x8BAD;&#x7EC3;&#x548C;&#x90E8;&#x7F72;&#x6027;&#x80FD;&#x6709;&#x4E86;&#x975E;&#x5E38;&#x591A;&#x7684;&#x63D0;&#x9AD8;&#x3002;</p>
+<p><img src="./img/ch15/mat_mul_gpu.png" alt="CUDA &#x77E9;&#x9635;&#x4E58;&#x6CD5;&#x793A;&#x4F8B;"></p>
+<h3 class="mume-header" id="1534-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84gpu%E5%BA%94%E7%94%A8">15.3.4 &#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x4E2D;&#x7684;GPU&#x5E94;&#x7528;</h3>
+
+<p>&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x5728;&#x6700;&#x8FD1;&#x51E0;&#x5E74;&#x5185;&#x51FA;&#x73B0;&#x7684;&#x4E95;&#x55B7;&#x73B0;&#x8C61;&#x80CC;&#x540E;&#x4E5F;&#x662F;GPU&#x7684;&#x5B58;&#x5728;&#x548C;&#x53D1;&#x5C55;&#x4F5C;&#x4E3A;&#x575A;&#x5B9E;&#x7684;&#x63A8;&#x52A8;&#x529B;&#x91CF;&#x3002;</p>
+<p>&#x54EA;&#x4E9B;&#x573A;&#x666F;&#x4F7F;&#x7528;GPU<br>
+&#x5728;&#x6D89;&#x53CA;&#x5927;&#x578B;&#x77E9;&#x9635;&#x8FD0;&#x7B97;&#x7684;&#x65F6;&#x5019;&#x4F7F;&#x7528;GPU&#x53EF;&#x4EE5;&#x663E;&#x8457;&#x52A0;&#x901F;&#x5904;&#x7406;&#x901F;&#x5EA6;&#xFF0C;&#x7531;&#x4E8E;GPU&#x67B6;&#x6784;&#x7684;&#x72EC;&#x7279;&#x8BBE;&#x8BA1;&#xFF0C;&#x9488;&#x5BF9;&#x77E9;&#x9635;&#x8FD0;&#x7B97;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x9AD8;&#x901F;&#x5E76;&#x884C;&#x8BA1;&#x7B97;&#xFF0C;&#x6781;&#x5927;&#x63D0;&#x9AD8;&#x8BA1;&#x7B97;&#x901F;&#x5EA6;&#x3002;<br>
+&#x4E00;&#x822C;&#x5728;&#x9AD8;&#x6027;&#x80FD;&#x8BA1;&#x7B97;&#xFF0C;&#x673A;&#x5668;&#x5B66;&#x4E60;&#xFF0C;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#xFF0C;&#x56FE;&#x50CF;&#x6E32;&#x67D3;&#x7B49;&#x7B49;&#x573A;&#x666F;&#x4E2D;&#x4F1A;&#x6BD4;&#x8F83;&#x591A;&#x7684;&#x4F7F;&#x7528;&#x77E9;&#x9635;&#x8FD0;&#x7B97;&#xFF0C;&#x4F7F;&#x7528;GPU&#x53EF;&#x4EE5;&#x663E;&#x8457;&#x52A0;&#x5FEB;&#x5904;&#x7406;&#x901F;&#x5EA6;&#x3002;<br>
+&#x5728;&#x4E00;&#x822C;&#x7684;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x8BAD;&#x7EC3;&#x4E2D;&#xFF0C;&#x901A;&#x5E38;&#x6765;&#x8BF4;&#x4F7F;&#x7528;GPU&#x6BD4;&#x4F7F;&#x7528;CPU&#x90FD;&#x6709;10&#x500D;&#x4EE5;&#x4E0A;&#x7684;&#x901F;&#x5EA6;&#x63D0;&#x5347;&#xFF0C;&#x6240;&#x4EE5;&#x51E0;&#x4E4E;&#x6240;&#x6709;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x7684;&#x7814;&#x7A76;&#x8005;&#x51E0;&#x4E4E;&#x90FD;&#x662F;&#x5728;&#x4F7F;&#x7528;GPU&#x8FDB;&#x884C;&#x8BAD;&#x7EC3;&#x3002;</p>
+<p>ImageNet&#x7684;&#x4F8B;&#x5B50;</p>
+<h3 class="mume-header" id="1535-%E6%96%B0%E5%9B%BE%E7%81%B5%E6%9E%B6%E6%9E%84%E9%87%8C%E7%9A%84tensor-core%E5%AF%B9%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%9C%89%E4%BB%80%E4%B9%88%E4%BD%9C%E7%94%A8">15.3.5 &#x65B0;&#x56FE;&#x7075;&#x67B6;&#x6784;&#x91CC;&#x7684;tensor core&#x5BF9;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x6709;&#x4EC0;&#x4E48;&#x4F5C;&#x7528;&#xFF1F;</h3>
+
+<p>&#x6211;&#x4EEC;&#x77E5;&#x9053;&#x5728;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x4E2D;,&#x77E9;&#x9635;-&#x77E9;&#x9635;&#x4E58;&#x6CD5;&#x8FD0;&#x7B97;&#xFF08;BLAS GEMM&#xFF09;&#x662F;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x8BAD;&#x7EC3;&#x548C;&#x63A8;&#x7406;&#x7684;&#x6838;&#x5FC3;&#xFF0C;&#x5E76;&#x4E14;&#x77E9;&#x9635;&#x4E58;&#x6CD5;&#x8FD0;&#x7B97;&#x5360;&#x636E;&#x4E86;&#x6240;&#x6709;&#x8BA1;&#x7B97;&#x91CF;&#x7684;&#x5927;&#x90E8;&#x5206;&#xFF0C;&#x800C;Tensor core&#x5C31;&#x662F;&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x800C;&#x63A8;&#x51FA;&#x7684;&#xFF0C;&#x5B83;&#x7684;&#x51FA;&#x73B0;&#x6781;&#x5927;&#x7684;&#x63D0;&#x9AD8;&#x4E86;&#x8BA1;&#x7B97;&#x6548;&#x7387;&#xFF0C;&#x5927;&#x5927;&#x52A0;&#x901F;&#x4E86;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x7684;&#x8BA1;&#x7B97;&#x901F;&#x5EA6;&#xFF0C;&#x5BF9;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x7684;&#x53D1;&#x5C55;&#x5177;&#x6709;&#x6781;&#x5927;&#x610F;&#x4E49;&#x3002;</p>
+<p>Tensor Core&#x662F;Volta&#x67B6;&#x6784;&#x6700;&#x91CD;&#x78C5;&#x7279;&#x6027;&#xFF0C;&#x662F;&#x4E13;&#x95E8;&#x9488;&#x5BF9;Deep Learning&#x5E94;&#x7528;&#x800C;&#x8BBE;&#x8BA1;&#x7684;&#x4E13;&#x7528;ASIC&#x5355;&#x5143;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x662F;&#x4E00;&#x79CD;&#x77E9;&#x9635;&#x4E58;&#x7D2F;&#x52A0;&#x7684;&#x8BA1;&#x7B97;&#x5355;&#x5143;&#x3002;&#xFF08;&#x77E9;&#x9635;&#x4E58;&#x7D2F;&#x52A0;&#x8BA1;&#x7B97;&#x5728;Deep Learning&#x7F51;&#x7EDC;&#x5C42;&#x7B97;&#x6CD5;&#x4E2D;&#xFF0C;&#x6BD4;&#x5982;&#x5377;&#x79EF;&#x5C42;&#x3001;&#x5168;&#x8FDE;&#x63A5;&#x5C42;&#x7B49;&#x662F;&#x6700;&#x91CD;&#x8981;&#x3001;&#x6700;&#x8017;&#x65F6;&#x7684;&#x4E00;&#x90E8;&#x5206;&#x3002;&#xFF09;Tensor Core&#x53EF;&#x4EE5;&#x5728;&#x4E00;&#x4E2A;&#x65F6;&#x949F;&#x5468;&#x671F;&#x5185;&#x5B9E;&#x73B0;&#x4E24;&#x4E2A;4&#xD7;4&#x77E9;&#x9635;&#x4E58;&#x6CD5;&#x4EE5;&#x53CA;&#x4E0E;&#x53E6;&#x4E00;&#x4E2A;4&#xD7;4&#x77E9;&#x9635;&#x52A0;&#x6CD5;&#x3002;&#x6574;&#x4E2A;&#x8BA1;&#x7B97;&#x7684;&#x4E2A;&#x6570;&#xFF0C;&#x5C31;&#x662F;&#x5728;&#x4E00;&#x4E2A;&#x65F6;&#x949F;&#x5468;&#x671F;&#x5185;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;64&#x6B21;&#x4E58;&#x548C;64&#x6B21;&#x52A0;&#x3002;</p>
+<p>&#x6240;&#x4EE5;Tensor Core&#x5C31;&#x662F;&#x4E3A;&#x4E86;&#x77E9;&#x9635;&#x4E58;&#x6CD5;&#x7684;&#x52A0;&#x901F;&#x800C;&#x8BBE;&#x8BA1;&#x7684;&#xFF0C;&#x4F7F;&#x7528;&#x5177;&#x6709;Tensor Core&#x7684;GPU&#x6765;&#x8FDB;&#x884C;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x7684;&#x8BAD;&#x7EC3;&#x4F1A;&#x6781;&#x5927;&#x7684;&#x63D0;&#x9AD8;&#x8BAD;&#x7EC3;&#x901F;&#x5EA6;&#x3002;</p>
+<h2 class="mume-header" id="154-cuda-%E6%A1%86%E6%9E%B6">15.4 CUDA &#x6846;&#x67B6;</h2>
+
+<h3 class="mume-header" id="1541-%E5%81%9Acuda%E7%BC%96%E7%A8%8B%E9%9A%BE%E4%B8%8D%E9%9A%BE">15.4.1 &#x505A;CUDA&#x7F16;&#x7A0B;&#x96BE;&#x4E0D;&#x96BE;&#xFF1F;</h3>
+
+<h3 class="mume-header" id="1542-cudnn">15.4.2 cuDNN</h3>
+
+<h2 class="mume-header" id="155-gpu%E7%A1%AC%E4%BB%B6%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%8E%A8%E8%8D%90">15.5 GPU&#x786C;&#x4EF6;&#x73AF;&#x5883;&#x914D;&#x7F6E;&#x63A8;&#x8350;</h2>
+
+<h3 class="mume-header" id="1551-gpu%E4%B8%BB%E8%A6%81%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87">15.5.1 GPU&#x4E3B;&#x8981;&#x6027;&#x80FD;&#x6307;&#x6807;</h3>
+
+<p>GPU&#x7684;&#x6027;&#x80FD;&#x4E3B;&#x8981;&#x7531;&#x4EE5;&#x4E0B;&#x4E09;&#x4E2A;&#x53C2;&#x6570;&#x6784;&#x6210;&#xFF1A;</p>
+<ol>
+<li>&#x8BA1;&#x7B97;&#x80FD;&#x529B;&#x3002;&#x901A;&#x5E38;&#x6211;&#x4EEC;&#x5173;&#x5FC3;&#x7684;&#x662F;32&#x4F4D;&#x6D6E;&#x70B9;&#x8BA1;&#x7B97;&#x80FD;&#x529B;&#x3002;16&#x4F4D;&#x6D6E;&#x70B9;&#x8BAD;&#x7EC3;&#x4E5F;&#x5F00;&#x59CB;&#x6D41;&#x884C;&#xFF0C;&#x5982;&#x679C;&#x53EA;&#x505A;&#x9884;&#x6D4B;&#x7684;&#x8BDD;&#x4E5F;&#x53EF;&#x4EE5;&#x7528;8&#x4F4D;&#x6574;&#x6570;&#x3002;</li>
+<li>&#x5185;&#x5B58;&#x5927;&#x5C0F;&#x3002;&#x5F53;&#x6A21;&#x578B;&#x8D8A;&#x5927;&#xFF0C;&#x6216;&#x8005;&#x8BAD;&#x7EC3;&#x65F6;&#x7684;&#x6279;&#x91CF;&#x8D8A;&#x5927;&#x65F6;&#xFF0C;&#x6240;&#x9700;&#x8981;&#x7684;GPU&#x5185;&#x5B58;&#x5C31;&#x8D8A;&#x591A;&#x3002;</li>
+<li>&#x5185;&#x5B58;&#x5E26;&#x5BBD;&#x3002;&#x53EA;&#x6709;&#x5F53;&#x5185;&#x5B58;&#x5E26;&#x5BBD;&#x8DB3;&#x591F;&#x65F6;&#x624D;&#x80FD;&#x5145;&#x5206;&#x53D1;&#x6325;&#x8BA1;&#x7B97;&#x80FD;&#x529B;&#x3002;</li>
+</ol>
+<p>&#x5BF9;&#x4E8E;&#x5927;&#x90E8;&#x5206;&#x7528;&#x6237;&#x6765;&#x8BF4;&#xFF0C;&#x53EA;&#x8981;&#x8003;&#x8651;&#x8BA1;&#x7B97;&#x80FD;&#x529B;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#x3002;GPU&#x5185;&#x5B58;&#x5C3D;&#x91CF;&#x4E0D;&#x5C0F;&#x4E8E;4GB&#x3002;&#x4F46;&#x5982;&#x679C;GPU&#x8981;&#x540C;&#x65F6;&#x663E;&#x793A;&#x56FE;&#x5F62;&#x754C;&#x9762;&#xFF0C;&#x90A3;&#x4E48;&#x63A8;&#x8350;&#x7684;&#x5185;&#x5B58;&#x5927;&#x5C0F;&#x81F3;&#x5C11;&#x4E3A;6GB&#x3002;&#x5185;&#x5B58;&#x5E26;&#x5BBD;&#x901A;&#x5E38;&#x76F8;&#x5BF9;&#x56FA;&#x5B9A;&#xFF0C;&#x9009;&#x62E9;&#x7A7A;&#x95F4;&#x8F83;&#x5C0F;&#x3002;</p>
+<p>&#x4E0B;&#x56FE;&#x63CF;&#x7ED8;&#x4E86;GTX 900&#x548C;1000&#x7CFB;&#x5217;&#x91CC;&#x5404;&#x4E2A;&#x578B;&#x53F7;&#x7684;32&#x4F4D;&#x6D6E;&#x70B9;&#x8BA1;&#x7B97;&#x80FD;&#x529B;&#x548C;&#x4EF7;&#x683C;&#x7684;&#x5BF9;&#x6BD4;&#x3002;&#x5176;&#x4E2D;&#x4EF7;&#x683C;&#x4E3A;Wikipedia&#x7684;&#x5EFA;&#x8BAE;&#x4EF7;&#x683C;&#x3002;</p>
+<p><img src="./img/ch15/gtx.png" alt="&#x6D6E;&#x70B9;&#x8BA1;&#x7B97;&#x80FD;&#x529B;&#x548C;&#x4EF7;&#x683C;&#x7684;&#x5BF9;&#x6BD4;&#x3002;"></p>
+<p>&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4ECE;&#x56FE;&#x4E2D;&#x8BFB;&#x51FA;&#x4E24;&#x70B9;&#x4FE1;&#x606F;&#xFF1A;</p>
+<ol>
+<li>&#x5728;&#x540C;&#x4E00;&#x4E2A;&#x7CFB;&#x5217;&#x91CC;&#x9762;&#xFF0C;&#x4EF7;&#x683C;&#x548C;&#x6027;&#x80FD;&#x5927;&#x4F53;&#x4E0A;&#x6210;&#x6B63;&#x6BD4;&#x3002;&#x4F46;&#x540E;&#x53D1;&#x5E03;&#x7684;&#x578B;&#x53F7;&#x6027;&#x4EF7;&#x6BD4;&#x66F4;&#x9AD8;&#xFF0C;&#x4F8B;&#x5982;980 TI&#x548C;1080 TI&#x3002;</li>
+<li>GTX 1000&#x7CFB;&#x5217;&#x6BD4;900&#x7CFB;&#x5217;&#x5728;&#x6027;&#x4EF7;&#x6BD4;&#x4E0A;&#x9AD8;&#x51FA;2&#x500D;&#x5DE6;&#x53F3;&#x3002;</li>
+</ol>
+<p>&#x5982;&#x679C;&#x5927;&#x5BB6;&#x7EE7;&#x7EED;&#x6BD4;&#x8F83;GTX&#x8F83;&#x65E9;&#x7684;&#x7CFB;&#x5217;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x53D1;&#x73B0;&#x7C7B;&#x4F3C;&#x7684;&#x89C4;&#x5F8B;&#x3002;&#x636E;&#x6B64;&#xFF0C;&#x6211;&#x4EEC;&#x63A8;&#x8350;&#x5927;&#x5BB6;&#x5728;&#x80FD;&#x529B;&#x8303;&#x56F4;&#x5185;&#x5C3D;&#x53EF;&#x80FD;&#x4E70;&#x8F83;&#x65B0;&#x7684;GPU&#x3002;</p>
+<h3 class="mume-header" id="1552-%E8%B4%AD%E4%B9%B0%E5%BB%BA%E8%AE%AE">15.5.2 &#x8D2D;&#x4E70;&#x5EFA;&#x8BAE;</h3>
+
+<h5 class="mume-header" id="%E9%A6%96%E5%85%88%E7%BB%99%E5%87%BA%E4%B8%80%E4%BA%9B%E6%80%BB%E4%BD%93%E7%9A%84%E5%BB%BA%E8%AE%AE">&#x9996;&#x5148;&#x7ED9;&#x51FA;&#x4E00;&#x4E9B;&#x603B;&#x4F53;&#x7684;&#x5EFA;&#x8BAE;</h5>
+
+<p>&#x6700;&#x597D;&#x7684;GPU&#x6574;&#x4F53;&#xFF08;&#x5C0F;&#x5E45;&#x5EA6;&#xFF09;&#xFF1A;Titan Xp<br>
+&#x7EFC;&#x5408;&#x6027;&#x4EF7;&#x6BD4;&#x9AD8;&#xFF0C;&#x4F46;&#x7565;&#x8D35;&#xFF1A;GTX 1080 Ti&#xFF0C;GTX 1070&#xFF0C;GTX 1080<br>
+&#x6027;&#x4EF7;&#x6BD4;&#x8FD8;&#x4E0D;&#x9519;&#x4E14;&#x4FBF;&#x5B9C;&#xFF1A;GTX 1060&#xFF08;6GB&#xFF09;</p>
+<p>&#x5F53;&#x4F7F;&#x7528;&#x6570;&#x636E;&#x96C6;&gt; 250GB&#xFF1A;GTX Titan X&#xFF08;Maxwell&#xFF09; &#xFF0C;NVIDIA Titan X Pascal&#x6216;NVIDIA Titan Xp</p>
+<p>&#x6CA1;&#x6709;&#x8DB3;&#x591F;&#x7684;&#x94B1;&#xFF1A;GTX 1060&#xFF08;6GB&#xFF09;</p>
+<p>&#x51E0;&#x4E4E;&#x6CA1;&#x6709;&#x94B1;&#xFF0C;&#x5165;&#x95E8;&#x7EA7;&#xFF1A;GTX 1050 Ti&#xFF08;4GB&#xFF09;</p>
+<p>&#x505A;Kaggle&#x6BD4;&#x8D5B;&#xFF1A;GTX 1060&#xFF08;6GB&#xFF09;&#x9002;&#x7528;&#x4E8E;&#x4EFB;&#x4F55;&#x201C;&#x6B63;&#x5E38;&#x201D;&#x6BD4;&#x8D5B;&#xFF0C;&#x6216;GTX 1080 Ti&#x7528;&#x4E8E;&#x201C;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x7ADE;&#x8D5B;&#x201D;</p>
+<p>&#x8BA1;&#x7B97;&#x673A;&#x89C6;&#x89C9;&#x7814;&#x7A76;&#x5458;&#xFF1A;NVIDIA Titan Xp&#xFF1B;&#x4E0D;&#x8981;&#x4E70;&#x73B0;&#x5728;&#x65B0;&#x51FA;&#x7684;Titan X&#xFF08;Pascal&#x6216;Maxwell&#xFF09;</p>
+<p>&#x4E00;&#x540D;&#x7814;&#x7A76;&#x5458;&#x4EBA;&#x5458;&#xFF1A;GTX 1080 Ti&#x3002;&#x5728;&#x67D0;&#x4E9B;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5982;&#x81EA;&#x7136;&#x8BED;&#x8A00;&#x5904;&#x7406;&#xFF0C;&#x4E00;&#x4E2A;GTX 1070&#x6216;GTX 1080&#x5DF2;&#x7ECF;&#x8DB3;&#x591F;&#x4E86;-&#x68C0;&#x67E5;&#x4F60;&#x73B0;&#x5728;&#x6A21;&#x578B;&#x7684;&#x5185;&#x5B58;&#x9700;&#x6C42;</p>
+<p>&#x642D;&#x5EFA;&#x4E00;&#x4E2A;GPU&#x96C6;&#x7FA4;&#xFF1A;&#x8FD9;&#x4E2A;&#x6709;&#x70B9;&#x590D;&#x6742;&#xFF0C;&#x53E6;&#x505A;&#x63A2;&#x8BA8;&#x3002;</p>
+<p>&#x521A;&#x5F00;&#x59CB;&#x8FDB;&#x884C;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x7814;&#x7A76;&#xFF1A;&#x4ECE;GTX 1060&#xFF08;6GB&#xFF09;&#x5F00;&#x59CB;&#x3002;&#x6839;&#x636E;&#x4F60;&#x4E0B;&#x4E00;&#x6B65;&#x5174;&#x8DA3;&#xFF08;&#x5165;&#x95E8;&#xFF0C;Kaggle&#x6BD4;&#x8D5B;&#xFF0C;&#x7814;&#x7A76;&#xFF0C;&#x5E94;&#x7528;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#xFF09;&#x7B49;&#x7B49;&#xFF0C;&#x5728;&#x8FDB;&#x884C;&#x9009;&#x62E9;&#x3002;&#x76EE;&#x524D;&#xFF0C;GTX 1060&#x66F4;&#x5408;&#x9002;&#x3002;</p>
+<p>&#x60F3;&#x5C1D;&#x8BD5;&#x4E0B;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#xFF0C;&#x4F46;&#x6CA1;&#x6709;&#x8FC7;&#x591A;&#x8981;&#x6C42;&#xFF1A;GTX 1050 ti&#xFF08;4&#x6216;2GB&#xFF09;</p>
+<p>&#x76EE;&#x524D;&#x72EC;&#x7ACB;GPU&#x4E3B;&#x8981;&#x6709;AMD&#x548C;Nvidia&#x4E24;&#x5BB6;&#x5382;&#x5546;&#x3002;&#x5176;&#x4E2D;Nvidia&#x5728;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x5E03;&#x5C40;&#x8F83;&#x65E9;&#xFF0C;&#x5BF9;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x6846;&#x67B6;&#x652F;&#x6301;&#x66F4;&#x597D;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x76EE;&#x524D;&#x5927;&#x5BB6;&#x4E3B;&#x8981;&#x4F1A;&#x9009;&#x62E9;Nvidia&#x7684;GPU&#x3002;</p>
+<p>Nvidia&#x6709;&#x9762;&#x5411;&#x4E2A;&#x4EBA;&#x7528;&#x6237;&#xFF08;&#x4F8B;&#x5982;GTX&#x7CFB;&#x5217;&#xFF09;&#x548C;&#x4F01;&#x4E1A;&#x7528;&#x6237;&#xFF08;&#x4F8B;&#x5982;Tesla&#x7CFB;&#x5217;&#xFF09;&#x7684;&#x4E24;&#x7C7B;GPU&#x3002;&#x8FD9;&#x4E24;&#x7C7B;GPU&#x7684;&#x8BA1;&#x7B97;&#x80FD;&#x529B;&#x76F8;&#x5F53;&#x3002;&#x7136;&#x800C;&#xFF0C;&#x9762;&#x5411;&#x4F01;&#x4E1A;&#x7528;&#x6237;&#x7684;GPU&#x901A;&#x5E38;&#x4F7F;&#x7528;&#x88AB;&#x52A8;&#x6563;&#x70ED;&#x5E76;&#x589E;&#x52A0;&#x4E86;&#x5185;&#x5B58;&#x6821;&#x9A8C;&#xFF0C;&#x4ECE;&#x800C;&#x66F4;&#x9002;&#x5408;&#x6570;&#x636E;&#x4E2D;&#x5FC3;&#xFF0C;&#x5E76;&#x901A;&#x5E38;&#x8981;&#x6BD4;&#x9762;&#x5411;&#x4E2A;&#x4EBA;&#x7528;&#x6237;&#x7684;GPU&#x8D35;&#x4E0A;10&#x500D;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x4F60;&#x662F;&#x62E5;&#x6709;100&#x53F0;&#x673A;&#x5668;&#x4EE5;&#x4E0A;&#x7684;&#x5927;&#x516C;&#x53F8;&#x7528;&#x6237;&#xFF0C;&#x901A;&#x5E38;&#x53EF;&#x4EE5;&#x8003;&#x8651;&#x9488;&#x5BF9;&#x4F01;&#x4E1A;&#x7528;&#x6237;&#x7684;Nvidia Tesla&#x7CFB;&#x5217;&#x3002;&#x5982;&#x679C;&#x4F60;&#x662F;&#x62E5;&#x6709;10&#x5230;100&#x53F0;&#x673A;&#x5668;&#x7684;&#x5B9E;&#x9A8C;&#x5BA4;&#x548C;&#x4E2D;&#x5C0F;&#x516C;&#x53F8;&#x7528;&#x6237;&#xFF0C;&#x9884;&#x7B97;&#x5145;&#x8DB3;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x53EF;&#x4EE5;&#x8003;&#x8651;Nvidia DGX&#x7CFB;&#x5217;&#xFF0C;&#x5426;&#x5219;&#x53EF;&#x4EE5;&#x8003;&#x8651;&#x8D2D;&#x4E70;&#x5982;Supermicro&#x4E4B;&#x7C7B;&#x7684;&#x6027;&#x4EF7;&#x6BD4;&#x6BD4;&#x8F83;&#x9AD8;&#x7684;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x8D2D;&#x4E70;&#x5B89;&#x88C5;GTX&#x7CFB;&#x5217;&#x7684;GPU&#x3002;</p>
+<p>Nvidia&#x4E00;&#x822C;&#x6BCF;&#x4E00;&#x4E24;&#x5E74;&#x53D1;&#x5E03;&#x4E00;&#x6B21;&#x65B0;&#x7248;&#x672C;&#x7684;GPU&#xFF0C;&#x4F8B;&#x5982;2017&#x5E74;&#x53D1;&#x5E03;&#x7684;&#x662F;GTX 1000&#x7CFB;&#x5217;&#x3002;&#x6BCF;&#x4E2A;&#x7CFB;&#x5217;&#x4E2D;&#x4F1A;&#x6709;&#x6570;&#x4E2A;&#x4E0D;&#x540C;&#x7684;&#x578B;&#x53F7;&#xFF0C;&#x5206;&#x522B;&#x5BF9;&#x5E94;&#x4E0D;&#x540C;&#x7684;&#x6027;&#x80FD;&#x3002;</p>
+<h2 class="mume-header" id="156-%E8%BD%AF%E4%BB%B6%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA">15.6 &#x8F6F;&#x4EF6;&#x73AF;&#x5883;&#x642D;&#x5EFA;</h2>
+
+<p>&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x6307;&#x57FA;&#x4E8E;&#x4E00;&#x5957;&#x5B8C;&#x6574;&#x7684;&#x8F6F;&#x4EF6;&#x7CFB;&#x7EDF;&#x6765;&#x6784;&#x5EFA;&#x7B97;&#x6CD5;&#xFF0C;&#x8BAD;&#x7EC3;&#x6A21;&#x578B;&#x3002;&#x5982;&#x4F55;&#x642D;&#x5EFA;&#x4E00;&#x5957;&#x5B8C;&#x6574;&#x7684;&#x8F6F;&#x4EF6;&#x7CFB;&#x7EDF;&#xFF0C;&#x6BD4;&#x5982;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7684;&#x9009;&#x62E9;&#xFF1F;&#x5B89;&#x88C5;&#x73AF;&#x5883;&#x4E2D;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;&#x7B49;&#x7B49;&#xFF0C;&#x672C;&#x8282;&#x505A;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x603B;&#x7ED3;&#x3002;</p>
+<h3 class="mume-header" id="1561-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%80%89%E6%8B%A9">15.6.1 &#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x9009;&#x62E9;&#xFF1F;</h3>
+
+<p>&#x9488;&#x5BF9;&#x786C;&#x4EF6;&#x5382;&#x5546;&#x6765;&#x8BF4;&#xFF0C;&#x6BD4;&#x5982;NVIDIA&#xFF0C;&#x5BF9;&#x5404;&#x4E2A;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7684;&#x652F;&#x6301;&#x90FD;&#x662F;&#x6BD4;&#x8F83;&#x597D;&#x7684; &#xFF0C;&#x6BD4;&#x5982;Windows&#x7CFB;&#x5217;,Linux&#x7CFB;&#x5217;&#xFF0C;&#x4F46;&#x662F;&#x7531;&#x4E8E;Linux&#x7CFB;&#x7EDF;&#x5BF9;&#x4E13;&#x4E1A;&#x6280;&#x672F;&#x4EBA;&#x5458;&#x6BD4;&#x8F83;&#x53CB;&#x597D;&#xFF0C;&#x6240;&#x4EE5;&#x76EE;&#x524D;&#x51E0;&#x4E4E;&#x6240;&#x6709;&#x7684;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x7CFB;&#x7EDF;&#x6784;&#x5EFA;&#x90FD;&#x662F;&#x57FA;&#x4E8E;Linux&#x7684;&#xFF0C;&#x6BD4;&#x8F83;&#x5E38;&#x7528;&#x7684;&#x7CFB;&#x7EDF;&#x5982;Ubuntu&#x7CFB;&#x5217;&#xFF0C;CentOS&#x7CFB;&#x5217;&#x7B49;&#x7B49;&#x3002;<br>
+&#x5728;&#x6784;&#x5EFA;&#x7CFB;&#x7EDF;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5982;&#x4F55;&#x9009;&#x62E9;&#x5408;&#x9002;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x662F;&#x4E00;&#x4E2A;&#x521A;&#x521A;&#x5165;&#x95E8;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x7684;&#x5DE5;&#x4F5C;&#x8005;&#x9762;&#x4E34;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x5728;&#x8FD9;&#x91CC;&#x7ED9;&#x51FA;&#x51E0;&#x70B9;&#x5EFA;&#x8BAE;&#xFF1A;<br>
+&#xFF08;1&#xFF09;&#x521A;&#x521A;&#x5165;&#x95E8;&#xFF0C;&#x719F;&#x6089;Windows&#x7CFB;&#x7EDF;&#xFF0C;&#x4F46;&#x662F;&#x5BF9;Linux&#x548C;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x90FD;&#x4E0D;&#x592A;&#x719F;&#xFF0C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x53EF;&#x4EE5;&#x57FA;&#x4E8E;windows&#x7CFB;&#x5217;&#x7CFB;&#x7EDF;&#x6765;&#x505A;&#x5165;&#x95E8;&#x5B66;&#x4E60;<br>
+&#xFF08;2&#xFF09;&#x7B80;&#x5355;&#x4E86;&#x89E3;Linux&#x7684;&#x4F7F;&#x7528;&#xFF0C;&#x4E0D;&#x592A;&#x61C2;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x76F8;&#x5173;&#x77E5;&#x8BC6;&#xFF0C;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x57FA;&#x4E8E;Linux&#x7CFB;&#x7EDF;&#x6765;&#x642D;&#x5EFA;&#x6846;&#x67B6;&#xFF0C;&#x8DD1;&#x4E00;&#x4E9B;&#x5F00;&#x6E90;&#x7684;&#x9879;&#x76EE;&#xFF0C;&#x6162;&#x6162;&#x6DF1;&#x5165;&#x7814;&#x7A76;&#x5B66;&#x4E60;<br>
+&#xFF08;3&#xFF09;&#x719F;&#x6089;Linux&#xFF0C;&#x4E0D;&#x719F;&#x6089;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x7406;&#x8BBA;&#xFF0C;&#x6BEB;&#x65E0;&#x7591;&#x95EE;&#xFF0C;&#x5F3A;&#x70C8;&#x63A8;&#x8350;&#x4F7F;&#x7528;Linux&#x7CFB;&#x7EDF;&#xFF0C;&#x5B89;&#x88C5;&#x8F6F;&#x4EF6;&#x7B80;&#x5355;&#xFF0C;&#x5DE5;&#x4F5C;&#x6548;&#x7387;&#x9AD8;<br>
+&#x603B;&#x4E4B;&#x4E00;&#x53E5;&#x8BDD;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x719F;&#x6089;Linux&#xFF0C;&#x5C31;&#x5148;&#x6162;&#x6162;&#x719F;&#x6089;&#xFF0C;&#x6700;&#x7EC8;&#x8FD8;&#x662F;&#x8981;&#x56DE;&#x5F52;&#x5230;Linux&#x7CFB;&#x7EDF;&#x6765;&#x6784;&#x5EFA;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x7CFB;&#x7EDF;</p>
+<h3 class="mume-header" id="1562-%E5%B8%B8%E7%94%A8%E5%9F%BA%E7%A1%80%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85">15.6.2 &#x5E38;&#x7528;&#x57FA;&#x7840;&#x8F6F;&#x4EF6;&#x5B89;&#x88C5;&#xFF1F;</h3>
+
+<p>&#x76EE;&#x524D;&#x6709;&#x4F17;&#x591A;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x6846;&#x67B6;&#x53EF;&#x4F9B;&#x5927;&#x5BB6;&#x4F7F;&#x7528;&#xFF0C;&#x4F46;&#x662F;&#x6240;&#x6709;&#x6846;&#x67B6;&#x57FA;&#x672C;&#x90FD;&#x6709;&#x4E00;&#x4E2A;&#x5171;&#x540C;&#x7684;&#x7279;&#x70B9;&#xFF0C;&#x76EE;&#x524D;&#x51E0;&#x4E4E;&#x90FD;&#x662F;&#x57FA;&#x4E8E;Nvidia&#x7684;GPU&#x6765;&#x8BAD;&#x7EC3;&#x6A21;&#x578B;&#xFF0C;&#x8981;&#x60F3;&#x66F4;&#x597D;&#x7684;&#x4F7F;&#x7528;Nvidia&#x7684;GPU&#xFF0C;cuda&#x548C;cudnn&#x5C31;&#x662F;&#x5FC5;&#x5907;&#x7684;&#x8F6F;&#x4EF6;&#x5B89;&#x88C5;&#x3002;</p>
+<ol>
+<li>
+<p><strong>&#x5B89;&#x88C5;cuda</strong><br>
+&#x4E0A;&#x6587;&#x4E2D;&#x6709;&#x5173;&#x4E8E;cuda&#x7684;&#x4ECB;&#x7ECD;&#xFF0C;&#x8FD9;&#x91CC;&#x53EA;&#x662F;&#x7B80;&#x5355;&#x4ECB;&#x7ECD;&#x57FA;&#x4E8E;Linux&#x7CFB;&#x7EDF;&#x5B89;&#x88C5;cuda&#x7684;&#x5177;&#x4F53;&#x6B65;&#x9AA4;&#xFF0C;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x81EA;&#x5DF1;&#x7684;&#x9700;&#x8981;&#x5B89;&#x88C5;cuda8.0&#x6216;&#x8005;cuda9.0&#xFF0C;&#x8FD9;&#x4E24;&#x79CD;&#x7248;&#x672C;&#x7684;&#x5B89;&#x88C5;&#x6B65;&#x9AA4;&#x57FA;&#x672C;&#x4E00;&#x81F4;&#xFF0C;&#x8FD9;&#x91CC;&#x4EE5;&#x6700;&#x5E38;&#x7528;&#x7684;ubuntu 16.04 lts&#x7248;&#x672C;&#x4E3A;&#x4F8B;&#xFF1A;</p>
+<ol>
+<li>&#x5B98;&#x7F51;&#x4E0B;&#x8F7D;&#xFF0C;&#x5730;&#x5740;<br>
+cuda8.0https://developer.nvidia.com/cuda-80-ga2-download-archive<br>
+cuda9.0https://developer.nvidia.com/cuda-90-download-archive<br>
+&#x8FDB;&#x5165;&#x7F51;&#x5740;&#x4E4B;&#x540E;&#x9009;&#x62E9;&#x5BF9;&#x5E94;&#x7684;&#x7CFB;&#x7EDF;&#x7248;&#x672C;&#x5373;&#x53EF;&#xFF0C;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF1A;<br>
+<img src="./img/ch15/cuda8.0.png" alt="cuda8.0"></li>
+</ol>
+<p><img src="./img/ch15/cuda9.0.png" alt="cuda9.0"></p>
+<ol start="2">
+<li>
+<p>&#x547D;&#x4EE4;&#x884C;&#x4E2D;&#x8FDB;&#x5165;&#x5230;cuda&#x6240;&#x5728;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x6388;&#x4E88;&#x8FD0;&#x884C;&#x6743;&#x9650;&#xFF1A;<br>
+cuda8.0: sudo chmod +x cuda_8.0.61_375.26_linux.run<br>
+cuda9.0:sudo chmod +x cuda_9.0.176_384.81_linux.run</p>
+</li>
+<li>
+<p>&#x6267;&#x884C;&#x547D;&#x4EE4;&#x5B89;&#x88C5;cuda&#xFF1A;<br>
+cuda8.0:sudo sh cuda_8.0.61_375.26_linux.run<br>
+cuda9.0:sudo sh cuda_9.0.176_384.81_linux.run<br>
+&#x4E4B;&#x540E;&#x547D;&#x4EE4;&#x4E4B;&#x540E;&#x4E0B;&#x9762;&#x5C31;&#x662F;&#x5B89;&#x88C5;&#x6B65;&#x9AA4;&#xFF0C;cuda8.0&#x548C;cuda9.0&#x51E0;&#x4E4E;&#x4E00;&#x81F4;&#xFF1A;</p>
+</li>
+</ol>
+<ul>
+<li>
+<p>&#x9996;&#x5148;&#x51FA;&#x73B0;cuda&#x8F6F;&#x4EF6;&#x7684;&#x7248;&#x6743;&#x8BF4;&#x660E;&#xFF0C;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x6309;q&#x952E;&#x8DF3;&#x8FC7;&#x9605;&#x8BFB;</p>
+</li>
+<li>
+<p>Do you accept the previously read EULA?<br>
+&#x200B;accept/decline/quit: <strong>accept</strong></p>
+</li>
+<li>
+<p>Install NVIDIA Accelerated Graphics Driver for Linux-x86_64 384.81?<br>
+&#x200B;(y)es/(n)o/(q)uit:<strong>no</strong></p>
+</li>
+<li>
+<p>Install the CUDA 9.0 Toolkit?<br>
+&#x200B;(y)es/(n)o/(q)uit:<strong>yes</strong></p>
+</li>
+<li>
+<p>Enter Toolkit Location<br>
+&#x200B; [ default is /usr/local/cuda-9.0 ]:&#x76F4;&#x63A5;&#x6309;enter&#x952E;&#x5373;&#x53EF;</p>
+</li>
+<li>
+<p>Do you want to install a symbolic link at /usr/local/cuda?<br>
+&#x200B;(y)es/(n)o/(q)uit:<strong>yes</strong></p>
+</li>
+<li>
+<p>Install the CUDA 9.0 Samples?<br>
+&#x200B; (y)es/(n)o/(q)uit:<strong>yes</strong></p>
+</li>
+</ul>
+<p>&#x4EE5;&#x4E0A;&#x6B65;&#x9AA4;&#x57FA;&#x672C;&#x5C31;&#x662F;cuda&#x7684;&#x5B89;&#x88C5;&#x6B65;&#x9AA4;&#x3002;</p>
+</li>
+<li>
+<p><strong>&#x5B89;&#x88C5;cudnn</strong><br>
+cudnn&#x662F;Nvidia&#x7684;&#x4E13;&#x95E8;&#x9488;&#x5BF9;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x7684;&#x52A0;&#x901F;&#x5E93;&#x3002;&#x3002;&#x3002;</p>
+</li>
+</ol>
+<h3 class="mume-header" id="1563-%E6%9C%AC%E6%9C%BA%E5%AE%89%E8%A3%85%E8%BF%98%E6%98%AF%E4%BD%BF%E7%94%A8docker">15.6.3 &#x672C;&#x673A;&#x5B89;&#x88C5;&#x8FD8;&#x662F;&#x4F7F;&#x7528;docker&#xFF1F;</h3>
+
+<h3 class="mume-header" id="1564-gpu%E9%A9%B1%E5%8A%A8%E9%97%AE%E9%A2%98">15.6.4 GPU&#x9A71;&#x52A8;&#x95EE;&#x9898;</h3>
+
+<h2 class="mume-header" id="157-%E6%A1%86%E6%9E%B6%E9%80%89%E6%8B%A9">15.7 &#x6846;&#x67B6;&#x9009;&#x62E9;</h2>
+
+<h3 class="mume-header" id="1571-%E4%B8%BB%E6%B5%81%E6%A1%86%E6%9E%B6%E6%AF%94%E8%BE%83">15.7.1 &#x4E3B;&#x6D41;&#x6846;&#x67B6;&#x6BD4;&#x8F83;</h3>
+
+<p>&#xFF08;&#x4E00;&#x4E2A;&#x5927;&#x8868;&#x683C;&#x6BD4;&#x8F83;&#xFF09;</p>
+<h3 class="mume-header" id="1572-%E6%A1%86%E6%9E%B6%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF">15.7.2 &#x6846;&#x67B6;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;</h3>
+
+<ul>
+<li>
+<p>Tensorflow<br>
+Tensorflow&#x662F;Google&#x4E8E;2015&#x5E74;&#x5F00;&#x6E90;&#x7684;&#x57FA;&#x4E8E;&#x6570;&#x636E;&#x6D41;&#x7F16;&#x7A0B;&#x7684;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x6846;&#x67B6;&#xFF0C;&#x5F97;&#x76CA;&#x4E8E;Google&#x5F3A;&#x5927;&#x7684;&#x6280;&#x672F;&#x5B9E;&#x529B;&#x548C;&#x54C1;&#x724C;&#x80CC;&#x4E66;&#xFF0C;&#x76EE;&#x524D;Tensorflow&#x53D1;&#x5C55;&#x8FC5;&#x731B;&#xFF0C;&#x5176;&#x7528;&#x6237;&#x91CF;&#x8FDC;&#x8FDC;&#x8D85;&#x8FC7;&#x5176;&#x5B83;&#x6846;&#x67B6;&#x7528;&#x6237;&#x3002;<br>
+&#x4F18;&#x70B9;&#xFF1A;</p>
+<ol>
+<li>&#x7531;&#x8C37;&#x6B4C;&#x5F00;&#x53D1;&#x3001;&#x7EF4;&#x62A4;&#xFF0C;&#x56E0;&#x6B64;&#x53EF;&#x4EE5;&#x4FDD;&#x969C;&#x652F;&#x6301;&#x3001;&#x5F00;&#x53D1;&#x7684;&#x6301;&#x7EED;&#x6027;</li>
+<li>&#x5DE8;&#x5927;&#x3001;&#x6D3B;&#x8DC3;&#x7684;&#x793E;&#x533A;</li>
+<li>&#x7F51;&#x7EDC;&#x8BAD;&#x7EC3;&#x7684;&#x4F4E;&#x7EA7;&#x3001;&#x9AD8;&#x7EA7;&#x63A5;&#x53E3;</li>
+<li>&#x300C;TensorBoard&#x300D;&#x662F;&#x4E00;&#x6B3E;&#x5F3A;&#x5927;&#x7684;&#x53EF;&#x89C6;&#x5316;&#x5957;&#x4EF6;&#xFF0C;&#x65E8;&#x5728;&#x8DDF;&#x8E2A;&#x7F51;&#x7EDC;&#x62D3;&#x6251;&#x548C;&#x6027;&#x80FD;&#xFF0C;&#x4F7F;&#x8C03;&#x8BD5;&#x66F4;&#x52A0;&#x7B80;&#x5355;</li>
+<li>TensorFlow &#x4E0D;&#x4EC5;&#x652F;&#x6301;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#xFF0C;&#x8FD8;&#x6709;&#x652F;&#x6301;&#x5F3A;&#x5316;&#x5B66;&#x4E60;&#x548C;&#x5176;&#x4ED6;&#x7B97;&#x6CD5;&#x7684;&#x5DE5;&#x5177;<br>
+&#x7F3A;&#x70B9;&#xFF1A;</li>
+<li>&#x8BA1;&#x7B97;&#x56FE;&#x662F;&#x7EAF; Python &#x7684;&#xFF0C;&#x56E0;&#x6B64;&#x901F;&#x5EA6;&#x8F83;&#x6162;</li>
+<li>&#x56FE;&#x6784;&#x9020;&#x662F;&#x9759;&#x6001;&#x7684;&#xFF0C;&#x610F;&#x5473;&#x7740;&#x56FE;&#x5FC5;&#x987B;&#x5148;&#x88AB;&#x300C;&#x7F16;&#x8BD1;&#x300D;&#x518D;&#x8FD0;&#x884C;</li>
+</ol>
+</li>
+<li>
+<p>PyTorch<br>
+pytorch&#x662F;Facebook&#x4E8E;2017&#x5E74;&#x624D;&#x63A8;&#x51FA;&#x7684;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x6846;&#x67B6;&#xFF0C;&#x76F8;&#x5BF9;&#x4E8E;&#x5176;&#x5B83;&#x6846;&#x67B6;&#xFF0C;&#x7B97;&#x662F;&#x6BD4;&#x8F83;&#x665A;&#x7684;&#x4E86;&#xFF0C;&#x4F46;&#x662F;&#x8FD9;&#x4E2A;&#x540C;&#x65F6;&#x4E5F;&#x662F;&#x4F18;&#x52BF;&#xFF0C;&#x5728;&#x8BBE;&#x8BA1;&#x7684;&#x65F6;&#x5019;&#x5C31;&#x4F1A;&#x907F;&#x514D;&#x5F88;&#x591A;&#x4E4B;&#x524D;&#x6846;&#x67B6;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x6240;&#x4EE5;&#x4E00;&#x7ECF;&#x63A8;&#x51FA;&#xFF0C;&#x5C31;&#x6536;&#x5230;&#x5927;&#x5BB6;&#x6781;&#x5927;&#x7684;&#x6B22;&#x8FCE;<br>
+&#x4F18;&#x70B9;&#xFF1A;</p>
+<ol>
+<li>&#x63A5;&#x53E3;&#x7B80;&#x6D01;&#x4E14;&#x89C4;&#x8303;&#xFF0C;&#x6587;&#x6863;&#x9F50;&#x5168;&#xFF0C;&#x548C;python&#x65E0;&#x7F1D;&#x7ED3;&#x5408;&#xFF0C;</li>
+<li>&#x793E;&#x533A;&#x975E;&#x5E38;&#x6D3B;&#x8DC3;&#xFF0C;&#x5F00;&#x6E90;&#x5B9E;&#x73B0;&#x8F83;&#x591A;</li>
+<li>&#x63D0;&#x4F9B;&#x52A8;&#x6001;&#x8BA1;&#x7B97;&#x56FE;&#xFF08;&#x610F;&#x5473;&#x7740;&#x56FE;&#x662F;&#x5728;&#x8FD0;&#x884C;&#x65F6;&#x751F;&#x6210;&#x7684;&#xFF09;&#xFF0C;&#x5141;&#x8BB8;&#x4F60;&#x5904;&#x7406;&#x53EF;&#x53D8;&#x957F;&#x5EA6;&#x7684;&#x8F93;&#x5165;&#x548C;&#x8F93;&#x51FA;&#xFF0C;&#x4F8B;&#x5982;&#xFF0C;&#x5728;&#x4F7F;&#x7528; RNN &#x65F6;&#x975E;&#x5E38;&#x6709;&#x7528;</li>
+<li>&#x6613;&#x4E8E;&#x7F16;&#x5199;&#x81EA;&#x5DF1;&#x7684;&#x56FE;&#x5C42;&#x7C7B;&#x578B;&#xFF0C;&#x6613;&#x4E8E;&#x5728; GPU &#x4E0A;&#x8FD0;&#x884C;</li>
+<li>&#x300C;TensorBoard&#x300D;&#x7F3A;&#x5C11;&#x4E00;&#x4E9B;&#x5173;&#x952E;&#x529F;&#x80FD;&#x65F6;&#xFF0C;&#x300C;Losswise&#x300D;&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A; Pytorch &#x7684;&#x66FF;&#x4EE3;&#x54C1;</li>
+</ol>
+</li>
+</ul>
+<p>&#x7F3A;&#x70B9;:</p>
+<ol>
+<li>&#x6A21;&#x578B;&#x90E8;&#x7F72;&#x76F8;&#x5BF9;&#x5176;&#x5B83;&#x6846;&#x67B6;&#x7A0D;&#x6709;&#x52A3;&#x52BF;&#xFF0C;&#x4E0D;&#x8FC7;&#x540E;&#x7EED;&#x7684;pytorch1.0&#x7248;&#x672C;&#x5E94;&#x8BE5;&#x4F1A;&#x6709;&#x5F88;&#x5927;&#x6539;&#x5584;&#xFF0C;&#x548C;caffe2&#x5408;&#x5E76;&#x540E;&#xFF0C;caffe2&#x7684;&#x4F18;&#x79C0;&#x7684;&#x6A21;&#x578B;&#x90E8;&#x7F72;&#x80FD;&#x529B;&#x53EF;&#x4EE5;&#x5F25;&#x8865;&#x8FD9;&#x4E2A;&#x4E0D;&#x8DB3;</li>
+<li></li>
+<li></li>
+</ol>
+<p>&#x76F8;&#x5173;&#x8D44;&#x6E90;&#x94FE;&#x63A5;&#xFF1A;</p>
+<ol>
+<li>&#x5B98;&#x7F51;&#x6559;&#x7A0B;&#xFF1A;<a href="https://pytorch.org/tutorials/">https://pytorch.org/tutorials/</a></li>
+<li>&#x57FA;&#x4E8E;pytorch&#x7684;&#x5F00;&#x6E90;&#x9879;&#x76EE;&#x6C47;&#x603B;&#xFF1A;<a href="https://github.com/bharathgs/Awesome-pytorch-list">https://github.com/bharathgs/Awesome-pytorch-list</a></li>
+<li></li>
+</ol>
+<ul>
+<li>
+<p>Keras<br>
+Keras &#x662F;&#x4E00;&#x4E2A;&#x66F4;&#x9AD8;&#x7EA7;&#x3001;&#x5BF9;&#x7528;&#x6237;&#x6700;&#x53CB;&#x597D;&#x7684; API&#xFF0C;&#x5177;&#x6709;&#x53EF;&#x914D;&#x7F6E;&#x7684;&#x540E;&#x7AEF;&#xFF0C;&#x7531; Google Brain &#x56E2;&#x961F;&#x6210;&#x5458; Francis Chollet &#x7F16;&#x5199;&#x548C;&#x7EF4;&#x62A4;<br>
+&#x4F18;&#x70B9;&#xFF1A;</p>
+<ol>
+<li>&#x63D0;&#x4F9B;&#x9AD8;&#x7EA7; API &#x6765;&#x6784;&#x5EFA;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x6A21;&#x578B;&#xFF0C;&#x4F7F;&#x5176;&#x6613;&#x4E8E;&#x9605;&#x8BFB;&#x548C;&#x4F7F;&#x7528;</li>
+<li>&#x7F16;&#x5199;&#x89C4;&#x8303;&#x7684;&#x6587;&#x6863;</li>
+<li>&#x5927;&#x578B;&#x3001;&#x6D3B;&#x8DC3;&#x7684;&#x793E;&#x533A;</li>
+<li>&#x4F4D;&#x4E8E;&#x5176;&#x4ED6;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x5E93;&#xFF08;&#x5982; Theano &#x548C; TensorFlow&#xFF0C;&#x53EF;&#x914D;&#x7F6E;&#xFF09;&#x4E4B;&#x4E0A;</li>
+<li>&#x4F7F;&#x7528;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7684;&#x8BBE;&#x8BA1;&#xFF0C;&#x56E0;&#x6B64;&#x6240;&#x6709;&#x5185;&#x5BB9;&#x90FD;&#x88AB;&#x89C6;&#x4E3A;&#x5BF9;&#x8C61;&#xFF08;&#x5982;&#x7F51;&#x7EDC;&#x5C42;&#x3001;&#x53C2;&#x6570;&#x3001;&#x4F18;&#x5316;&#x5668;&#x7B49;&#xFF09;&#x3002;&#x6240;&#x6709;&#x6A21;&#x578B;&#x53C2;&#x6570;&#x90FD;&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;&#x5BF9;&#x8C61;&#x5C5E;&#x6027;&#x8FDB;&#x884C;&#x8BBF;&#x95EE;<br>
+&#x7F3A;&#x70B9;&#xFF1A;</li>
+<li>&#x7531;&#x4E8E;&#x7528;&#x9014;&#x975E;&#x5E38;&#x666E;&#x904D;&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x6027;&#x80FD;&#x65B9;&#x9762;&#x6BD4;&#x8F83;&#x6B20;&#x7F3A;</li>
+<li>&#x4E0E; TensorFlow &#x540E;&#x7AEF;&#x914D;&#x5408;&#x4F7F;&#x7528;&#x65F6;&#x4F1A;&#x51FA;&#x73B0;&#x6027;&#x80FD;&#x95EE;&#x9898;&#xFF08;&#x56E0;&#x4E3A;&#x5E76;&#x672A;&#x9488;&#x5BF9;&#x5176;&#x8FDB;&#x884C;&#x4F18;&#x5316;&#xFF09;&#xFF0C;&#x4F46;&#x4E0E; Theano &#x540E;&#x7AEF;&#x914D;&#x5408;&#x4F7F;&#x7528;&#x65F6;&#x6548;&#x679C;&#x826F;&#x597D;</li>
+<li>&#x4E0D;&#x50CF; TensorFlow &#x6216; PyTorch &#x90A3;&#x6837;&#x7075;&#x6D3B;</li>
+</ol>
+</li>
+<li>
+<p>Sonnet</p>
+</li>
+<li>
+<p>Caffe<br>
+caffe&#x662F;&#x7B2C;&#x4E00;&#x4E2A;&#x4E3B;&#x6D41;&#x4EA7;&#x54C1;&#x7EA7;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x5E93;&#xFF0C;&#x4E8E; 2014 &#x5E74;&#x7531; UC Berkeley &#x53D1;&#x5E03;&#x5F00;&#x6E90;<br>
+&#x4F18;&#x70B9;&#xFF1A;</p>
+<ol>
+<li>&#x7B80;&#x5355;&#x7F51;&#x7EDC;&#x7ED3;&#x6784;&#x65E0;&#x9700;&#x7F16;&#x5199;&#x4EE3;&#x7801;&#xFF0C;&#x53EF;&#x5FEB;&#x901F;&#x5B9E;&#x73B0;</li>
+<li>&#x6F02;&#x4EAE;&#x7684; Matlab &#x548C; Python &#x63A5;&#x53E3;</li>
+<li>&#x5B8C;&#x5168;&#x7531;c++&#x7F16;&#x7A0B;&#x5B9E;&#x73B0;&#xFF0C;&#x90E8;&#x7F72;&#x65B9;&#x4FBF;</li>
+</ol>
+</li>
+</ul>
+<p>&#x7F3A;&#x70B9;&#xFF1A;</p>
+<ol>
+<li>&#x4E0D;&#x7075;&#x6D3B;&#x3002;&#x5728; Caffe &#x4E2D;&#xFF0C;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x88AB;&#x5F53;&#x505A;&#x4E00;&#x4E2A;&#x5C42;&#xFF0C;&#x56E0;&#x6B64;&#x5982;&#x679C;&#x4F60;&#x60F3;&#x8981;&#x4E00;&#x79CD;&#x65B0;&#x7684;&#x5C42;&#x7C7B;&#x578B;&#xFF0C;&#x4F60;&#x9700;&#x8981;&#x5B9A;&#x4E49;&#x5B8C;&#x6574;&#x7684;&#x524D;&#x5411;&#x3001;&#x540E;&#x5411;&#x548C;&#x68AF;&#x5EA6;&#x66F4;&#x65B0;&#x8FC7;&#x7A0B;&#x3002;&#x8FD9;&#x4E9B;&#x5C42;&#x662F;&#x7F51;&#x7EDC;&#x7684;&#x6784;&#x5EFA;&#x6A21;&#x5757;&#xFF0C;&#x4F60;&#x9700;&#x8981;&#x5728;&#x65E0;&#x7A77;&#x65E0;&#x5C3D;&#x7684;&#x5217;&#x8868;&#x4E2D;&#x8FDB;&#x884C;&#x9009;&#x62E9;&#x3002;&#xFF08;&#x76F8;&#x53CD;&#xFF0C;&#x5728; TensorFlow &#x4E2D;&#xFF0C;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x88AB;&#x5F53;&#x505A;&#x4E00;&#x4E2A;&#x5F20;&#x91CF;&#x8FD0;&#x7B97;&#x4F8B;&#x5982;&#x77E9;&#x9635;&#x76F8;&#x52A0;&#x3001;&#x76F8;&#x4E58;&#x6216;&#x5377;&#x79EF;&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x8F7B;&#x6613;&#x5730;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x5C42;&#x4F5C;&#x4E3A;&#x8FD9;&#x4E9B;&#x8FD0;&#x7B97;&#x7684;&#x7EC4;&#x5408;&#x3002;&#x56E0;&#x6B64; TensorFlow &#x7684;&#x6784;&#x5EFA;&#x6A21;&#x5757;&#x66F4;&#x5C0F;&#x5DE7;&#xFF0C;&#x5141;&#x8BB8;&#x66F4;&#x7075;&#x6D3B;&#x7684;&#x6A21;&#x5757;&#x5316;&#x3002;&#xFF09;</li>
+<li>&#x9700;&#x8981;&#x5927;&#x91CF;&#x7684;&#x975E;&#x5FC5;&#x8981;&#x5197;&#x957F;&#x4EE3;&#x7801;&#x3002;&#x5982;&#x679C;&#x4F60;&#x5E0C;&#x671B;&#x540C;&#x65F6;&#x652F;&#x6301; CPU &#x548C; GPU&#xFF0C;&#x4F60;&#x9700;&#x8981;&#x4E3A;&#x6BCF;&#x4E00;&#x4E2A;&#x5B9E;&#x73B0;&#x989D;&#x5916;&#x7684;&#x51FD;&#x6570;&#x3002;&#x4F60;&#x8FD8;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x666E;&#x901A;&#x7684;&#x6587;&#x672C;&#x7F16;&#x8F91;&#x5668;&#x6765;&#x5B9A;&#x4E49;&#x4F60;&#x7684;&#x6A21;&#x578B;&#x3002;&#x771F;&#x4EE4;&#x4EBA;&#x5934;&#x75BC;&#xFF01;&#x51E0;&#x4E4E;&#x6BCF;&#x4E2A;&#x4EBA;&#x90FD;&#x5E0C;&#x671B;&#x7A0B;&#x5E8F;&#x5316;&#x5730;&#x5B9A;&#x4E49;&#x6A21;&#x578B;&#xFF0C;&#x56E0;&#x4E3A;&#x8FD9;&#x6709;&#x5229;&#x4E8E;&#x4E0D;&#x540C;&#x7EC4;&#x4EF6;&#x4E4B;&#x95F4;&#x7684;&#x6A21;&#x5757;&#x5316;&#x3002;&#x6709;&#x8DA3;&#x7684;&#x662F;&#xFF0C;Caffe &#x7684;&#x4E3B;&#x8981;&#x67B6;&#x6784;&#x5E08;&#x73B0;&#x5728;&#x5728; TensorFlow &#x56E2;&#x961F;&#x5DE5;&#x4F5C;</li>
+<li>&#x4E13;&#x4E00;&#x6027;&#x3002;&#x4EC5;&#x5B9A;&#x4F4D;&#x5728;&#x8BA1;&#x7B97;&#x673A;&#x89C6;&#x89C9;&#xFF08;&#x4F46;&#x505A;&#x5F97;&#x5F88;&#x4E0D;&#x9519;&#xFF09;</li>
+<li>&#x4E0D;&#x662F;&#x4EE5; Python &#x7F16;&#x5199;&#xFF01;&#x5982;&#x679C;&#x4F60;&#x5E0C;&#x671B;&#x5F15;&#x5165;&#x65B0;&#x7684;&#x53D8;&#x52A8;&#xFF0C;&#x4F60;&#x9700;&#x8981;&#x5728; C++&#x548C; CUDA &#x4E0A;&#x7F16;&#x7A0B;&#xFF08;&#x5BF9;&#x4E8E;&#x66F4;&#x5C0F;&#x7684;&#x53D8;&#x52A8;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5B83;&#x7684; Python &#x548C; Matlab &#x63A5;&#x53E3;&#xFF09;</li>
+<li>&#x7CDF;&#x7CD5;&#x7684;&#x6587;&#x6863;</li>
+<li>&#x5B89;&#x88C5;&#x6BD4;&#x8F83;&#x56F0;&#x96BE;&#xFF01;&#x6709;&#x5927;&#x91CF;&#x7684;&#x4F9D;&#x8D56;&#x5305;</li>
+</ol>
+<ul>
+<li>
+<p>Caffe2</p>
+</li>
+<li>
+<p>MxNet<br>
+MxNet&#x662F;dmlc&#x793E;&#x533A;&#x63A8;&#x51FA;&#x7684;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x6846;&#x67B6;&#xFF0C;MXNet&#x7531;&#x5B66;&#x672F;&#x754C;&#x53D1;&#x8D77;&#xFF0C;&#x5305;&#x62EC;&#x6570;&#x4E2A;&#x9876;&#x5C16;&#x5927;&#x5B66;&#x7684;&#x591A;&#x4E2A;&#x5B66;&#x79D1;&#x7684;&#x7814;&#x7A76;&#x4EBA;&#x5458;&#x7684;&#x8D21;&#x732E;&#xFF0C;&#x5728;2017&#x5E74;&#x88AB;&#x4E9A;&#x9A6C;&#x900A;&#x6307;&#x5B9A;&#x4E3A;&#x5B98;&#x65B9;&#x6846;&#x67B6;&#x3002;<br>
+mxnet&#x7684;&#x6700;&#x77E5;&#x540D;&#x7684;&#x4F18;&#x70B9;&#x5C31;&#x662F;&#x5176;&#x5BF9;&#x591A;GPU&#x7684;&#x652F;&#x6301;&#x548C;&#x6269;&#x5C55;&#x6027;&#x5F3A;&#xFF0C;&#x5176;&#x4F18;&#x79C0;&#x7684;&#x6027;&#x80FD;&#x4F7F;&#x4E4B;&#x5728;&#x5DE5;&#x4E1A;&#x754C;&#x5360;&#x6709;&#x4E00;&#x5E2D;&#x4E4B;&#x5730;&#xFF0C;&#x5728;amazon&#x652F;&#x6301;&#x4E4B;&#x540E;&#xFF0C;&#x5176;&#x6587;&#x6863;&#x548C;&#x5F00;&#x53D1;&#x8FDB;&#x5EA6;&#x660E;&#x663E;&#x597D;&#x5F88;&#x591A;&#x3002;&#x9664;&#x4E86;&#x9AD8;&#x53EF;&#x6269;&#x5C55;&#x6027;&#xFF0C;MXNet &#x8FD8;&#x63D0;&#x4F9B;&#x6DF7;&#x5408;&#x7F16;&#x7A0B;&#x6A21;&#x578B;&#xFF08;&#x547D;&#x4EE4;&#x5F0F;&#x548C;&#x58F0;&#x660E;&#x5F0F;&#xFF09;&#xFF0C;&#x540C;&#x65F6;&#x517C;&#x5BB9;&#x591A;&#x79CD;&#x7F16;&#x7A0B;&#x8BED;&#x8A00;&#xFF08;&#x5305;&#x62EC; Python&#x3001;C ++&#x3001;R&#x3001;Scala&#x3001;Julia&#x3001;Matlab &#x548C; JavaScript&#xFF09;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x76EE;&#x524D;&#x4E3B;&#x8981;&#x5728;&#x63A8;python&#x9AD8;&#x5C42;&#x63A5;&#x53E3;gluon</p>
+</li>
+</ul>
+<p>&#x4F18;&#x70B9;&#xFF1A;</p>
+<ol>
+<li>&#x591A;GPU&#x652F;&#x6301;&#x597D;&#xFF0C;&#x6269;&#x5C55;&#x6027;&#x5F3A;&#xFF0C;&#x652F;&#x6301;&#x591A;&#x79CD;&#x7F16;&#x7A0B;&#x8BED;&#x8A00;&#x63A5;&#x53E3;&#xFF0C;&#x4E3B;&#x8981;&#x662F;&#x7531;&#x534E;&#x4EBA;&#x56E2;&#x961F;&#x5F00;&#x53D1;&#xFF0C;&#x4E2D;&#x6587;&#x793E;&#x533A;&#x6D3B;&#x8DC3;&#xFF0C;&#x4E2D;&#x6587;&#x6587;&#x6863;&#x8D44;&#x6E90;&#x548C;&#x8BFE;&#x7A0B;&#x4E30;&#x5BCC;</li>
+<li>&#x9488;&#x5BF9;&#x4E24;&#x5927;&#x70ED;&#x95E8;&#x9886;&#x57DF;&#x63A8;&#x51FA;gluoncv&#x548C;gluonNLP&#x6A21;&#x5757;&#xFF0C;&#x590D;&#x73B0;&#x7ECF;&#x5178;&#x8BBA;&#x6587;&#xFF0C;&#x8FBE;&#x5230;State-of-the-art&#xFF0C;&#x63A5;&#x53E3;&#x8BBE;&#x8BA1;&#x7B80;&#x5355;&#xFF0C;&#x6587;&#x6863;&#x9F50;&#x5168;&#xFF0C;&#x62FF;&#x6765;&#x5C31;&#x53EF;&#x4EE5;&#x7528;<br>
+&#x7F3A;&#x70B9;:</li>
+<li>&#x73B0;&#x5728;mxnet&#x5B98;&#x65B9;&#x793E;&#x533A;&#x4E3B;&#x8981;&#x5728;&#x63A8;gluon&#x63A5;&#x53E3;&#xFF0C;&#x63A5;&#x53E3;&#x7A0D;&#x6709;&#x6DF7;&#x4E71;&#xFF0C;&#x5751;&#x8F83;&#x591A;&#xFF0C;&#x5165;&#x624B;&#x95E8;&#x69DB;&#x7A0D;&#x9AD8;</li>
+<li>&#x504F;&#x5C0F;&#x4F17;&#xFF0C;&#x7ECF;&#x5178;&#x7F51;&#x7EDC;&#x548C;&#x9879;&#x76EE;&#x7684;&#x5F00;&#x6E90;&#x5B9E;&#x73B0;&#x76F8;&#x5BF9;&#x4E8E;tensorflow&#x548C;pytorch&#x8FD8;&#x662F;&#x6BD4;&#x8F83;&#x5C11;&#xFF0C;&#x5F88;&#x591A;&#x8FD8;&#x662F;&#x9700;&#x8981;&#x81EA;&#x5DF1;&#x624B;&#x52A8;&#x5B9E;&#x73B0;<br>
+&#x76F8;&#x5173;&#x8D44;&#x6E90;&#x94FE;&#x63A5;&#xFF1A;</li>
+<li>&#x5B98;&#x65B9;&#x6559;&#x7A0B;&#xFF1A;<a href="http://mxnet.incubator.apache.org">http://mxnet.incubator.apache.org</a> &#x63D0;&#x4F9B;&#x6709;&#x5FEB;&#x901F;&#x5165;&#x95E8;&#x6559;&#x7A0B;&#x548C;&#x8BE6;&#x7EC6;&#x6587;&#x6863;&#x8BF4;&#x660E;</li>
+<li>&#x4E2D;&#x6587;&#x6559;&#x7A0B;&#xFF1A;<a href="http://zh.gluon.ai/">http://zh.gluon.ai/</a> &#x5B98;&#x65B9;&#x7684;&#x4E2D;&#x6587;&#x6559;&#x7A0B;&#xFF0C;&#x6B64;&#x8BFE;&#x7A0B;&#x6709;&#x5BF9;&#x5E94;&#x7684;&#x4E2D;&#x6587;&#x7248;&#x89C6;&#x9891;&#xFF0C;&#x4E3B;&#x8981;&#x7531;&#x674E;&#x6C90;&#x5927;&#x795E;&#x8BB2;&#x8BFE;</li>
+<li>&#x4E2D;&#x6587;&#x8BBA;&#x575B;&#xFF1A;<a href="https://discuss.gluon.ai/">https://discuss.gluon.ai/</a> &#x5B98;&#x65B9;&#x53D1;&#x4E2D;&#x6587;&#x8BBA;&#x575B;&#xFF0C;mxnet&#x7684;&#x4E3B;&#x8981;&#x4F5C;&#x8005;&#x90FD;&#x5728;&#x8FD9;&#x91CC;&#xFF0C;&#x8BBA;&#x575B;&#x6BD4;&#x8F83;&#x6D3B;&#x8DC3;&#xFF0C;&#x53EF;&#x53CA;&#x65F6;&#x5F97;&#x5230;&#x4F5C;&#x8005;&#x7684;&#x56DE;&#x7B54;</li>
+<li>&#x57FA;&#x4E8E;mxnet&#x7684;&#x5F00;&#x6E90;&#x9879;&#x76EE;&#x5B9E;&#x73B0;&#xFF1A;<a href="https://github.com/chinakook/Awesome-MXNet%E8%BF%99%E9%87%8C%E4%B8%BB%E8%A6%81%E5%88%97%E4%B8%BE%E4%BA%86mxnet%E5%9C%A8%E5%90%84%E4%B8%AA%E9%A2%86%E5%9F%9F%E7%9A%84%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%BC%80%E6%BA%90%E5%AE%9E%E7%8E%B0">https://github.com/chinakook/Awesome-MXNet&#x8FD9;&#x91CC;&#x4E3B;&#x8981;&#x5217;&#x4E3E;&#x4E86;mxnet&#x5728;&#x5404;&#x4E2A;&#x9886;&#x57DF;&#x7684;&#x9879;&#x76EE;&#x7684;&#x5F00;&#x6E90;&#x5B9E;&#x73B0;</a></li>
+</ol>
+<ul>
+<li>
+<p>CNTK</p>
+</li>
+<li>
+<p>PaddlePaddle</p>
+</li>
+<li>
+<p>&#x5176;&#x4ED6;&#x56FD;&#x5185;&#x81EA;&#x4E3B;&#x5F00;&#x53D1;&#x5F00;&#x6E90;&#x6846;&#x67B6;</p>
+</li>
+</ul>
+<h3 class="mume-header" id="1573-%E5%93%AA%E4%BA%9B%E6%A1%86%E6%9E%B6%E5%AF%B9%E4%BA%8E%E9%83%A8%E7%BD%B2%E7%8E%AF%E5%A2%83%E5%8F%8B%E5%A5%BD">15.7.3 &#x54EA;&#x4E9B;&#x6846;&#x67B6;&#x5BF9;&#x4E8E;&#x90E8;&#x7F72;&#x73AF;&#x5883;&#x53CB;&#x597D;&#xFF1F;</h3>
+
+<ul>
+<li>
+<p>Tensorflow Serving</p>
+</li>
+<li>
+<p>ONNX &#x6807;&#x51C6;</p>
+</li>
+<li>
+<p>TensorRT</p>
+</li>
+<li>
+<p>ONNPACK</p>
+</li>
+<li>
+<p>Clipper</p>
+</li>
+</ul>
+<h3 class="mume-header" id="1574-%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E7%9A%84%E6%A1%86%E6%9E%B6%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9">15.7.4 &#x79FB;&#x52A8;&#x5E73;&#x53F0;&#x7684;&#x6846;&#x67B6;&#x5982;&#x4F55;&#x9009;&#x62E9;&#xFF1F;</h3>
+
+<ul>
+<li>
+<p>Tensorflow Lite</p>
+</li>
+<li>
+<p>Caffe2</p>
+</li>
+</ul>
+<h2 class="mume-header" id="158-%E5%85%B6%E4%BB%96">15.8 &#x5176;&#x4ED6;</h2>
+
+<h3 class="mume-header" id="1581-%E5%A4%9Agpu%E7%8E%AF%E5%A2%83%E7%9A%84%E9%85%8D%E7%BD%AE">15.8.1 &#x591A;GPU&#x73AF;&#x5883;&#x7684;&#x914D;&#x7F6E;</h3>
+
+<ul>
+<li>
+<p>Tensorflow</p>
+</li>
+<li>
+<p>PyTorch</p>
+</li>
+</ul>
+<h3 class="mume-header" id="1582-%E6%98%AF%E4%B8%8D%E6%98%AF%E5%8F%AF%E4%BB%A5%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83">15.8.2 &#x662F;&#x4E0D;&#x662F;&#x53EF;&#x4EE5;&#x5206;&#x5E03;&#x5F0F;&#x8BAD;&#x7EC3;&#xFF1F;</h3>
+
+<h3 class="mume-header" id="1583-%E5%8F%AF%E4%BB%A5%E5%9C%A8spark%E7%8E%AF%E5%A2%83%E9%87%8C%E8%AE%AD%E7%BB%83%E6%88%96%E8%80%85%E9%83%A8%E7%BD%B2%E6%A8%A1%E5%9E%8B%E5%90%97">15.8.3 &#x53EF;&#x4EE5;&#x5728;SPARK&#x73AF;&#x5883;&#x91CC;&#x8BAD;&#x7EC3;&#x6216;&#x8005;&#x90E8;&#x7F72;&#x6A21;&#x578B;&#x5417;&#xFF1F;</h3>
+
+<h3 class="mume-header" id="1584-%E6%80%8E%E4%B9%88%E8%BF%9B%E4%B8%80%E6%AD%A5%E4%BC%98%E5%8C%96%E6%80%A7%E8%83%BD">15.8.4 &#x600E;&#x4E48;&#x8FDB;&#x4E00;&#x6B65;&#x4F18;&#x5316;&#x6027;&#x80FD;&#xFF1F;</h3>
+
+<ul>
+<li>
+<p>TVM</p>
+</li>
+<li>
+<p>nGraph</p>
+</li>
+</ul>
+<h3 class="mume-header" id="1585-tpu%E5%92%8Cgpu%E7%9A%84%E5%8C%BA%E5%88%AB">15.8.5 TPU&#x548C;GPU&#x7684;&#x533A;&#x522B;&#xFF1F;</h3>
+
+<h3 class="mume-header" id="1586-%E6%9C%AA%E6%9D%A5%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%AF%B9%E4%BA%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AD%89ai%E6%8A%80%E6%9C%AF%E7%9A%84%E5%BD%B1%E5%93%8D">15.8.6 &#x672A;&#x6765;&#x91CF;&#x5B50;&#x8BA1;&#x7B97;&#x5BF9;&#x4E8E;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x7B49;AI&#x6280;&#x672F;&#x7684;&#x5F71;&#x54CD;&#xFF1F;</h3>
+
+<hr>
+<h2 class="mume-header" id="151-gpu%E8%B4%AD%E4%B9%B0%E6%8C%87%E5%8D%97">15.1 GPU&#x8D2D;&#x4E70;&#x6307;&#x5357;</h2>
+
+<p>&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x8BAD;&#x7EC3;&#x901A;&#x5E38;&#x9700;&#x8981;&#x5927;&#x91CF;&#x7684;&#x8BA1;&#x7B97;&#x8D44;&#x6E90;&#x3002;GPU&#x76EE;&#x524D;&#x662F;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x6700;&#x5E38;&#x4F7F;&#x7528;&#x7684;&#x8BA1;&#x7B97;&#x52A0;&#x901F;&#x786C;&#x4EF6;&#x3002;&#x76F8;&#x5BF9;&#x4E8E;CPU&#x6765;&#x8BF4;&#xFF0C;GPU&#x66F4;&#x4FBF;&#x5B9C;&#x4E14;&#x8BA1;&#x7B97;&#x66F4;&#x52A0;&#x5BC6;&#x96C6;&#x3002;&#x4E00;&#x65B9;&#x9762;&#xFF0C;&#x76F8;&#x540C;&#x8BA1;&#x7B97;&#x80FD;&#x529B;&#x7684;GPU&#x7684;&#x4EF7;&#x683C;&#x4E00;&#x822C;&#x662F;CPU&#x4EF7;&#x683C;&#x7684;&#x5341;&#x5206;&#x4E4B;&#x4E00;&#x3002;&#x53E6;&#x4E00;&#x65B9;&#x9762;&#xFF0C;&#x4E00;&#x53F0;&#x670D;&#x52A1;&#x5668;&#x901A;&#x5E38;&#x53EF;&#x4EE5;&#x642D;&#x8F7D;8&#x5757;&#x6216;&#x8005;16&#x5757;GPU&#x3002;&#x56E0;&#x6B64;&#xFF0C;GPU&#x6570;&#x91CF;&#x53EF;&#x4EE5;&#x770B;&#x4F5C;&#x662F;&#x8861;&#x91CF;&#x4E00;&#x53F0;&#x670D;&#x52A1;&#x5668;&#x7684;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x8BA1;&#x7B97;&#x80FD;&#x529B;&#x7684;&#x4E00;&#x4E2A;&#x6807;&#x51C6;&#x3002;</p>
+<h3 class="mume-header" id="1511-%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9gpu">15.1.1 &#x5982;&#x4F55;&#x9009;&#x62E9;GPU</h3>
+
+<h3 class="mume-header" id="1512-gpu%E7%9A%84%E4%B8%BB%E8%A6%81%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87">15.1.2 GPU&#x7684;&#x4E3B;&#x8981;&#x6027;&#x80FD;&#x6307;&#x6807;</h3>
+
+<p>&#x5728;&#x9009;&#x62E9;GPU&#x65F6;&#xFF0C;&#x9996;&#x5148;&#x8981;&#x8003;&#x8651;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;GPU&#x6027;&#x80FD;&#x95EE;&#x9898;&#x662F;&#x4EC0;&#x4E48;&#x5462;&#xFF1A;&#x662F;&#x5426;&#x4E3A;cuda&#x6838;&#x5FC3;&#xFF1F;&#x65F6;&#x949F;&#x901F;&#x5EA6;&#x591A;&#x5927;&#xFF1F;&#x5185;&#x5B58;&#x5927;&#x5C0F;&#x591A;&#x5C11;&#xFF1F;<br>
+&#x8FD9;&#x4E9B;&#x90FD;&#x4E0D;&#x662F;&#xFF0C;&#x5BF9;&#x4E8E;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x6027;&#x80FD;&#x800C;&#x8A00;&#xFF0C;&#x6700;&#x91CD;&#x8981;&#x7684;&#x7279;&#x5F81;&#x662F;&#x5185;&#x5B58;&#x5E26;&#x5BBD;&#xFF08;memory bandwidth&#xFF09;&#x3002;<br>
+&#x7B80;&#x800C;&#x8A00;&#x4E4B;&#xFF1A;GPU&#x9488;&#x5BF9;&#x5185;&#x5B58;&#x5E26;&#x5BBD;&#x8FDB;&#x884C;&#x4E86;&#x4F18;&#x5316;&#xFF0C;&#x4F46;&#x540C;&#x65F6;&#x727A;&#x7272;&#x4E86;&#x5185;&#x5B58;&#x8BBF;&#x95EE;&#x65F6;&#x95F4;&#xFF08;&#x5EF6;&#x8FDF;&#xFF09;&#x3002;CPU&#x7684;&#x8BBE;&#x8BA1;&#x6070;&#x6070;&#x76F8;&#x53CD;&#xFF1A;&#x5982;&#x679C;&#x6D89;&#x53CA;&#x5C11;&#x91CF;&#x5185;&#x5B58;&#xFF08;&#x4F8B;&#x5982;&#x51E0;&#x4E2A;&#x6570;&#x5B57;&#x76F8;&#x4E58;&#xFF08;3 * 6 * 9&#xFF09;&#xFF09;&#xFF0C;CPU&#x53EF;&#x4EE5;&#x5FEB;&#x901F;&#x8BA1;&#x7B97;&#xFF0C;&#x4F46;&#x662F;&#x5BF9;&#x4E8E;&#x5927;&#x91CF;&#x5185;&#x5B58;&#xFF08;&#x5982;&#x77E9;&#x9635;&#x4E58;&#x6CD5;&#xFF08;A * B * C&#xFF09;&#x5219;&#x5F88;&#x6162;&#x3002;&#x7531;&#x4E8E;&#x5185;&#x5B58;&#x5E26;&#x5BBD;&#x7684;&#x9650;&#x5236;&#xFF0C;&#x5F53;&#x6D89;&#x53CA;&#x5927;&#x91CF;&#x5185;&#x5B58;&#x7684;&#x95EE;&#x9898;&#x65F6;&#xFF0C;GPU&#x5FEB;&#x901F;&#x8BA1;&#x7B97;&#x7684;&#x4F18;&#x52BF;&#x5F80;&#x5F80;&#x4F1A;&#x53D7;&#x5230;&#x9650;&#x5236;&#x3002;&#x5F53;&#x7136;&#xFF0C;GPU&#x548C;CPU&#x4E4B;&#x95F4;&#x8FD8;&#x6709;&#x66F4;&#x590D;&#x6742;&#x7684;&#x533A;&#x522B;&#xFF0C;&#x5173;&#x4E8E;&#x4E3A;&#x4F55;GPU&#x5982;&#x6B64;&#x9002;&#x7528;&#x4E8E;&#x5904;&#x7406;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x95EE;&#x9898;&#xFF0C;&#x53E6;&#x505A;&#x63A2;&#x8BA8;&#x3002;</p>
+<p>&#x6240;&#x4EE5;&#x5982;&#x679C;&#x4F60;&#x60F3;&#x8D2D;&#x4E70;&#x4E00;&#x4E2A;&#x5FEB;&#x901F;&#x7684;GPU&#xFF0C;&#x9996;&#x5148;&#x8981;&#x5173;&#x6CE8;&#x7684;&#x662F;GPU&#x7684;&#x5E26;&#x5BBD;&#xFF08;bandwidth&#xFF09;&#x3002;</p>
+<h3 class="mume-header" id="1513-%E6%95%B4%E6%9C%BA%E9%85%8D%E7%BD%AE">15.1.3 &#x6574;&#x673A;&#x914D;&#x7F6E;</h3>
+
+<p>&#x901A;&#x5E38;&#xFF0C;&#x6211;&#x4EEC;&#x4E3B;&#x8981;&#x7528;GPU&#x505A;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x8BAD;&#x7EC3;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x8D2D;&#x4E70;&#x9AD8;&#x7AEF;&#x7684;CPU&#x3002;&#x81F3;&#x4E8E;&#x6574;&#x673A;&#x914D;&#x7F6E;&#xFF0C;&#x5C3D;&#x91CF;&#x53C2;&#x8003;&#x7F51;&#x4E0A;&#x63A8;&#x8350;&#x7684;&#x4E2D;&#x9AD8;&#x6863;&#x7684;&#x914D;&#x7F6E;&#x5C31;&#x597D;&#x3002;&#x4E0D;&#x8FC7;&#xFF0C;&#x8003;&#x8651;&#x5230;GPU&#x7684;&#x529F;&#x8017;&#x3001;&#x6563;&#x70ED;&#x548C;&#x4F53;&#x79EF;&#xFF0C;&#x6211;&#x4EEC;&#x5728;&#x6574;&#x673A;&#x914D;&#x7F6E;&#x4E0A;&#x4E5F;&#x9700;&#x8981;&#x8003;&#x8651;&#x4EE5;&#x4E0B;&#x4E09;&#x4E2A;&#x989D;&#x5916;&#x56E0;&#x7D20;&#x3002;</p>
+<ol>
+<li>&#x673A;&#x7BB1;&#x4F53;&#x79EF;&#x3002;GPU&#x5C3A;&#x5BF8;&#x8F83;&#x5927;&#xFF0C;&#x901A;&#x5E38;&#x8003;&#x8651;&#x8F83;&#x5927;&#x4E14;&#x81EA;&#x5E26;&#x98CE;&#x6247;&#x7684;&#x673A;&#x7BB1;&#x3002;</li>
+<li>&#x7535;&#x6E90;&#x3002;&#x8D2D;&#x4E70;GPU&#x65F6;&#x9700;&#x8981;&#x67E5;&#x4E00;&#x4E0B;GPU&#x7684;&#x529F;&#x8017;&#xFF0C;&#x4F8B;&#x5982;50W&#x5230;300W&#x4E0D;&#x7B49;&#x3002;&#x8D2D;&#x4E70;&#x7535;&#x6E90;&#x8981;&#x786E;&#x4FDD;&#x529F;&#x7387;&#x8DB3;&#x591F;&#xFF0C;&#x4E14;&#x4E0D;&#x4F1A;&#x8FC7;&#x8F7D;&#x673A;&#x623F;&#x7684;&#x4F9B;&#x7535;&#x3002;</li>
+<li>&#x4E3B;&#x677F;&#x7684;PCIe&#x5361;&#x69FD;&#x3002;&#x63A8;&#x8350;&#x4F7F;&#x7528;PCIe 3.0 16x&#x6765;&#x4FDD;&#x8BC1;&#x5145;&#x8DB3;&#x7684;GPU&#x5230;&#x4E3B;&#x5185;&#x5B58;&#x7684;&#x5E26;&#x5BBD;&#x3002;&#x5982;&#x679C;&#x642D;&#x8F7D;&#x591A;&#x5757;GPU&#xFF0C;&#x8981;&#x4ED4;&#x7EC6;&#x9605;&#x8BFB;&#x4E3B;&#x677F;&#x8BF4;&#x660E;&#xFF0C;&#x4EE5;&#x786E;&#x4FDD;&#x591A;&#x5757;GPU&#x4E00;&#x8D77;&#x4F7F;&#x7528;&#x65F6;&#x4ECD;&#x7136;&#x662F;16x&#x5E26;&#x5BBD;&#x3002;&#x6CE8;&#x610F;&#xFF0C;&#x6709;&#x4E9B;&#x4E3B;&#x677F;&#x642D;&#x8F7D;4&#x5757;GPU&#x65F6;&#x4F1A;&#x964D;&#x5230;8x&#x751A;&#x81F3;4x&#x5E26;&#x5BBD;&#x3002;</li>
+</ol>
+<h3 class="mume-header" id="1514-%E5%B0%8F%E7%BB%93">15.1.4 &#x5C0F;&#x7ED3;</h3>
+
+<ul>
+<li>&#x5728;&#x9884;&#x7B97;&#x8303;&#x56F4;&#x4E4B;&#x5185;&#xFF0C;&#x5C3D;&#x53EF;&#x80FD;&#x4E70;&#x8F83;&#x65B0;&#x7684;GPU&#x3002;</li>
+<li>&#x6574;&#x673A;&#x914D;&#x7F6E;&#x9700;&#x8981;&#x8003;&#x8651;&#x5230;GPU&#x7684;&#x529F;&#x8017;&#x3001;&#x6563;&#x70ED;&#x548C;&#x4F53;&#x79EF;&#x3002;</li>
+</ul>
+<h2 class="mume-header" id="152-%E6%A1%86%E6%9E%B6%E9%80%89%E5%9E%8B">15.2 &#x6846;&#x67B6;&#x9009;&#x578B;</h2>
+
+<p>&#x76EE;&#x524D;&#x5E38;&#x7528;&#x7684;&#x6846;&#x67B6;&#x6709;tensorflow,keras,pytorch,mxnet&#x7B49;&#x7B49;&#xFF0C;&#x5404;&#x4E2A;&#x6846;&#x67B6;&#x7684;&#x4F18;&#x7F3A;&#x70B9;&#x5728;&#x6B64;&#x7B80;&#x5355;&#x4ECB;&#x7ECD;&#xFF1A;</p>
+<h3 class="mume-header" id="1521-%E5%B8%B8%E7%94%A8%E6%A1%86%E6%9E%B6%E7%AE%80%E4%BB%8B">15.2.1 &#x5E38;&#x7528;&#x6846;&#x67B6;&#x7B80;&#x4ECB;</h3>
+
+<p>1&#xFF0C;tensorflow&#xFF1A;<br>
+tensorflow&#x7531;&#x4E8E;&#x6709;google&#x7684;&#x5F3A;&#x5927;&#x80CC;&#x4E66;&#xFF0C;&#x52A0;&#x4E0A;&#x5176;&#x4F18;&#x79C0;&#x7684;&#x5206;&#x5E03;&#x5F0F;&#x8BBE;&#x8BA1;&#xFF0C;&#x4E30;&#x5BCC;&#x7684;&#x6559;&#x7A0B;&#x8D44;&#x6E90;&#x548C;&#x8BBA;&#x575B;&#xFF0C;&#x5DE5;&#x4E1A;&#x90E8;&#x7F72;&#x65B9;&#x4FBF;&#xFF0C;&#x57FA;&#x672C;&#x5F88;&#x591A;&#x4EBA;&#x90FD;&#x662F;&#x4ECE;tensorflow&#x5165;&#x95E8;&#x7684;<br>
+&#x4F18;&#x70B9;&#xFF1A;google&#x7684;&#x5F3A;&#x5927;&#x80CC;&#x4E66;&#xFF0C;&#x5206;&#x5E03;&#x5F0F;&#x8BAD;&#x7EC3;&#xFF0C;&#x6559;&#x7A0B;&#x8D44;&#x6E90;&#x4E30;&#x5BCC;&#xFF0C;&#x5E38;&#x89C1;&#x95EE;&#x9898;&#x57FA;&#x672C;&#x90FD;&#x53EF;&#x4EE5;&#x5728;&#x4E92;&#x8054;&#x7F51;&#x4E2D;&#x627E;&#x5230;&#x89E3;&#x51B3;&#x529E;&#x6CD5;&#xFF0C;&#x5DE5;&#x4E1A;&#x90E8;&#x7F72;&#x65B9;&#x4FBF;<br>
+&#x7F3A;&#x70B9;: &#x63A5;&#x53E3;&#x6DF7;&#x4E71;&#xFF0C;&#x5B98;&#x65B9;&#x6587;&#x6863;&#x4E0D;&#x591F;&#x7B80;&#x6D01;&#xFF0C;&#x6E05;&#x6670;&#xFF0C;</p>
+<p>2&#xFF0C;keras:<br>
+keras&#x662F;&#x4E00;&#x79CD;&#x9AD8;&#x5C42;&#x7F16;&#x7A0B;&#x63A5;&#x53E3;&#xFF0C;&#x5176;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x4E0D;&#x540C;&#x7684;&#x540E;&#x7AEF;&#xFF0C;&#x6BD4;&#x5982;tensorflow&#xFF0C;therao&#x7B49;&#x7B49;<br>
+&#x4F18;&#x70B9;&#xFF1A;&#x63A5;&#x53E3;&#x7B80;&#x6D01;&#xFF0C;&#x4E0A;&#x624B;&#x5FEB;&#xFF0C;&#x6587;&#x6863;&#x597D;&#xFF0C;&#x8D44;&#x6E90;&#x591A;<br>
+&#x7F3A;&#x70B9;: &#x5C01;&#x88C5;&#x7684;&#x592A;&#x597D;&#x4E86;&#x5BFC;&#x81F4;&#x4E0D;&#x7406;&#x89E3;&#x5176;&#x6280;&#x672F;&#x7EC6;&#x8282;</p>
+<p>3,pytorch:</p>
+<p>4,caffe2:<br>
+caffe2&#x662F;&#x5728;caffe&#x4E4B;&#x540E;&#x7684;&#x7B2C;&#x4E8C;&#x4EE3;&#x7248;&#x672C;&#xFF0C;&#x540C;&#x5C5E;&#x4E8E;Facebook&#x3002;&#x3002;&#x3002;<br>
+&#x4F18;&#x70B9;&#xFF1A;&#x652F;&#x6301;&#x6A21;&#x578B;&#x7684;&#x5168;&#x5E73;&#x53F0;&#x90E8;&#x7F72;&#xFF0C;&#x3002;&#x3002;&#x3002;&#x3002;<br>
+&#x7F3A;&#x70B9;:&#x4F7F;&#x7528;&#x4EBA;&#x6570;&#x76F8;&#x5BF9;&#x8F83;&#x5C11;&#xFF0C;&#x8D44;&#x6E90;&#x8F83;&#x5C11;&#xFF0C;&#x548C;pytorch&#x5408;&#x5E76;&#x540E;&#x5E94;&#x8BE5;&#x4F1A;&#x66F4;&#x53D7;&#x6B22;&#x8FCE;</p>
+<p>5,mxnet<br>
+mxnet&#x662F;dmlc&#x793E;&#x533A;&#x63A8;&#x51FA;&#x7684;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x6846;&#x67B6;&#xFF0C;&#x5728;2017&#x5E74;&#x88AB;&#x4E9A;&#x9A6C;&#x900A;&#x6307;&#x5B9A;&#x4E3A;&#x5B98;&#x65B9;&#x6846;&#x67B6;<br>
+&#x4F18;&#x70B9;&#xFF1A;&#x652F;&#x6301;&#x591A;&#x79CD;&#x8BED;&#x8A00;&#xFF0C;&#x4EE3;&#x7801;&#x8BBE;&#x8BA1;&#x4F18;&#x79C0;&#xFF0C;&#x7701;&#x663E;&#x5B58;&#xFF0C;&#x534E;&#x4EBA;&#x56E2;&#x961F;&#x5F00;&#x53D1;&#xFF0C;&#x4E2D;&#x6587;&#x793E;&#x533A;&#x6D3B;&#x8DC3;&#xFF0C;&#x5B98;&#x65B9;&#x590D;&#x73B0;&#x7ECF;&#x5178;&#x8BBA;&#x6587;&#x63A8;&#x51FA;gluoncv&#x548C;gluonNLP&#x6A21;&#x5757;&#xFF0C;&#x975E;&#x5E38;&#x65B9;&#x4FBF;&#xFF0C;&#x62FF;&#x6765;&#x5C31;&#x53EF;&#x4EE5;&#x7528;&#x3002;<br>
+&#x7F3A;&#x70B9;:&#x73B0;&#x5728;mxnet&#x5B98;&#x65B9;&#x793E;&#x533A;&#x4E3B;&#x8981;&#x5728;&#x63A8;gluon&#x63A5;&#x53E3;&#xFF0C;&#x63A5;&#x53E3;&#x7A0D;&#x6709;&#x6DF7;&#x4E71;&#xFF0C;&#x5751;&#x8F83;&#x591A;&#xFF0C;&#x5165;&#x624B;&#x95E8;&#x69DB;&#x7A0D;&#x9AD8;</p>
+<p>6&#xFF0C;caffe&#xFF1A;<br>
+&#x76EE;&#x524D;&#x5F88;&#x591A;&#x505A;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x6BD4;&#x8F83;&#x65E9;&#x7684;&#x5927;&#x5382;&#x57FA;&#x672C;&#x90FD;&#x662F;&#x5728;&#x7528;caffe&#xFF0C;&#x56E0;&#x4E3A;&#x5728;2013-2015&#x5E74;&#x57FA;&#x672C;&#x5C31;&#x662F;caffe&#x7684;&#x5929;&#x4E0B;&#xFF0C;&#x5E76;&#x4E14;caffe&#x7684;&#x4EE3;&#x7801;&#x8BBE;&#x8BA1;&#x5F88;&#x4F18;&#x79C0;&#xFF0C;&#x57FA;&#x672C;&#x6240;&#x6709;&#x4EE3;&#x7801;&#x90FD;&#x88AB;&#x7FFB;&#x4E86;&#x5F88;&#x591A;&#x904D;&#x4E86;&#xFF0C;&#x88AB;&#x5404;&#x79CD;&#x5206;&#x6790;&#xFF0C;&#x5927;&#x5382;&#x57FA;&#x672C;&#x90FD;&#x662F;&#x9B54;&#x6539;caffe&#xFF0C;&#x57FA;&#x4E8E;caffe&#x6765;&#x8FDB;&#x884C;&#x4E8C;&#x6B21;&#x5F00;&#x53D1;&#xFF0C;&#x6240;&#x5728;&#x76EE;&#x524D;&#x5728;&#x5F88;&#x591A;&#x5927;&#x5382;&#x8FD8;&#x662F;&#x5728;&#x4F7F;&#x7528;caffe<br>
+&#x4F18;&#x70B9;&#xFF1A;&#x8D44;&#x6E90;&#x4E30;&#x5BCC;&#xFF0C;&#x4EE3;&#x7801;&#x5BB9;&#x6613;&#x7406;&#x89E3;&#xFF0C;&#x90E8;&#x7F72;&#x65B9;&#x4FBF;<br>
+&#x7F3A;&#x70B9;&#xFF1A;&#x5165;&#x95E8;&#x95E8;&#x69DB;&#x9AD8;&#xFF0C;&#x6587;&#x6863;&#x8F83;&#x5C11;</p>
+<h3 class="mume-header" id="1521-%E6%A1%86%E6%9E%B6%E9%80%89%E5%9E%8B%E6%80%BB%E7%BB%93">15.2.1 &#x6846;&#x67B6;&#x9009;&#x578B;&#x603B;&#x7ED3;</h3>
+
+<p>1&#xFF0C;&#x65B0;&#x624B;&#x5165;&#x95E8;&#xFF0C;&#x9996;&#x63A8;pytorch&#xFF0C;&#x4E0A;&#x624B;&#x5FEB;&#xFF0C;&#x8D44;&#x6E90;&#x4E30;&#x5BCC;,&#x5B98;&#x65B9;&#x6587;&#x6863;&#x5199;&#x7684;&#x975E;&#x5E38;&#x597D;(<a href="https://pytorch.org/tutorials/">https://pytorch.org/tutorials/</a>)<br>
+2&#xFF0C;&#x76EE;&#x524D;&#x5DE5;&#x4E1A;&#x90E8;&#x7F72;&#xFF0C;tensorflow&#x662F;&#x9996;&#x9009;,&#x8D44;&#x6E90;&#x4E30;&#x5BCC;&#xFF0C;&#x5E76;&#x4E14;&#x5728;&#x5206;&#x5E03;&#x5F0F;&#x8BAD;&#x7EC3;&#x8FD9;&#x4E00;&#x5757;&#x57FA;&#x672C;&#x4E00;&#x5BB6;&#x72EC;&#x5927;<br>
+3&#xFF0C;mxnet&#x7684;gluon&#x63A5;&#x53E3;&#x6709;&#x6BD4;&#x8F83;&#x4E30;&#x5BCC;&#x7684;&#x4E2D;&#x6587;&#x8D44;&#x6E90;&#xFF08;&#x6559;&#x7A0B;&#xFF1A;<a href="http://zh.gluon.ai">zh.gluon.ai</a>&#xFF0C;&#x8BBA;&#x575B;&#xFF1A;<a href="http://discuss.gluon.ai">discuss.gluon.ai</a>&#xFF09;,gluoncv&#x6A21;&#x5757;&#xFF08;<a href="https://gluon-cv.mxnet.io">https://gluon-cv.mxnet.io</a>&#xFF09;,gluonNLP&#x6A21;&#x5757;&#xFF08;<a href="https://gluon-nlp.mxnet.io">https://gluon-nlp.mxnet.io</a>&#xFF09;</p>
+<h2 class="mume-header" id="153-%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2">15.3 &#x6A21;&#x578B;&#x90E8;&#x7F72;</h2>
+
+<p>&#x6211;&#x4EEC;&#x4E00;&#x822C;&#x90FD;&#x662F;&#x901A;&#x8FC7;python&#x6216;&#x8005;&#x5176;&#x4ED6;&#x8BED;&#x8A00;&#x6765;&#x7F16;&#x7801;&#x8BAD;&#x7EC3;&#x6A21;&#x578B;&#xFF0C;&#x7136;&#x540E;&#x57FA;&#x4E8E;&#x540E;&#x7AEF;&#x6765;&#x8FDB;&#x884C;&#x90E8;&#x7F72;<br>
+&#x4E00;&#x822C;&#x7684;&#x6846;&#x67B6;&#x90FD;&#x6709;&#x81EA;&#x8EAB;&#x7684;&#x90E8;&#x7F72;&#x6846;&#x67B6;&#xFF0C;&#x6BD4;&#x5982;tensorflow&#xFF0C;pytorch&#xFF0C;caffe2&#xFF0C;mxnet&#x7B49;&#x7B49;<br>
+&#x6709;&#x4E00;&#x4E9B;&#x6846;&#x67B6;&#x662F;&#x4E13;&#x95E8;&#x505A;&#x63A8;&#x7406;&#x90E8;&#x7F72;&#x4F7F;&#x7528;&#x7684;&#xFF0C;&#x6BD4;&#x5982;<br>
+&#xFF08;1&#xFF09;tensorRT</p>
+<p>(2)TVM</p>
+<p>(3)ONNX</p>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
